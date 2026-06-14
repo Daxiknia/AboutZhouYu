@@ -1,0 +1,787 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+            <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+        <style type="text/css">
+            <!--
+            a:link {
+                color: #0000FF;
+                text-decoration: none;
+            }
+            a:visited {
+                color: #0000FF;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #FF0000;
+                text-decoration: none;
+            }
+            .read {
+                line-height: 30px;
+            }
+            -->
+        </style>
+        <script type="text/javascript" src="../ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+        <script>!window.jQuery&&document.write('<script src="scripts/jquery.js"><\/script>');</script>
+        <script type="text/javascript" src="scripts/trans.js"></script>
+        <!--
+          公用文件
+        -->
+        <script type='text/javascript' src='../js.adm.cnzz.net/js/abase.js'></script>
+        <!-- 
+        将此标记放入标头部分 
+        -->
+        <script type='text/javascript'>
+            var googletag = googletag||{};
+            googletag.cmd = googletag.cmd||[];
+            (function() {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:'==document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:')+
+                        '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+        </script>
+
+        <script type='text/javascript'>
+            googletag.cmd.push(function() {
+                googletag.defineSlot('1011651/bbsjjwxcnet_showmsg_top', [728, 90], 'div-gpt-ad-1340894591102-0').addService(googletag.pubads());
+                googletag.defineSlot('1011651/bbsjjwxcnet_showmsg_foot', [728, 90], 'div-gpt-ad-1340894397500-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        </script>
+
+
+
+        <!-- 标头部分的标记结束 -->
+                <script src="../w.cnzz.com/c.php@id=30012213" language="JavaScript"></script>    </head>
+        <body bgcolor="#FFE7F7" topmargin="0">
+        <center>
+            <!-- bbsjjwxcnet_showmsg_top -->
+            <div id='div-gpt-ad-1340894591102-0' style='width:728px; height:90px; overflow:hidden;'>
+                <!-- 广告位：论坛顶部通发-->
+                <script>CNZZ_SLOT_RENDER("256845");</script>
+            </div>
+        </center>
+                <script type = "text/javascript" src = "scripts/jquery.blockUI.pack.js"></script>
+        <style type="text/css">
+            <!--
+            .graypic {
+                filter: Gray;
+            }
+            .image1,.image2,.image6,.image7,.image8,.image9,.image10,.image12,.image13,.image14,.image15,.image16,.image17{background:url(notebook/bbsbigimage.gif) no-repeat 0 0;}
+            .image1{width:34px;height:32px;background-position:0 0;}
+            .image2{width:36px;height:32px;background-position:-34px 0;}
+            .image6{width:44px;height:39px;background-position:-70px 0;}
+            .image7{width:39px;height:38px;background-position:-114px 0;}
+            .image8{width:42px;height:37px;background-position:0 -32px;}
+            .image9{width:32px;height:32px;background-position:-42px -39px;}
+            .image10{width:32px;height:32px;background-position:-74px -39px;}
+            .image12{width:32px;height:32px;background-position:-106px -39px;}
+            .image13{width:32px;height:32px;background-position:0 -69px;}
+            .image14{width:32px;height:32px;background-position:-32px -71px;}
+            .image15{width:32px;height:32px;background-position:-64px -71px;}
+            .image16{width:32px;height:32px;background-position:-96px -71px;}
+            .image17{width:32px;height:32px;background-position:-128px -71px;}
+
+            -->
+        </style>
+                <script type="text/javascript">
+                    // --- 提示窗口
+                    var alert_blockUI = function(message) {
+                        $.blockUI('<div align="center" style="font-size: 12px;"><div style="float:right"><img src="../static.jjwxc.net/images/close.gif" width="12" height="12" style="cursor:pointer" onClick="$.unblockUI()"/></div><b>'+message+'</b><br><br><br><br><input type="button" value="确 定" onClick="$.unblockUI()"/></div>', {
+                            width: '330px',
+                            height: '100px',
+                            cursor: 'default'
+                        });
+                    }
+                    var topboard_start = function() {
+                        var board = 36;
+                        var topic = 12879;
+                        var msg = '晋江论坛→网友交流区→同人文库';
+                        var channel = $('#channel').val();
+                        var remarks = $('#remarks').val();
+                        var subhead = $('#subhead').val();
+                        var cover = $('#cover').val();
+                        var sure = $('#sure').val();
+                        var message = '';
+                        if (remarks.length==0) {
+                            message += '推荐语';
+                        }
+                        if (channel=='0') {
+                            if (cover.length==0||!/^http:\/\/(.*)(jpg|gif|png)$/.test(cover)) {
+                                message += '，正确的图片地址';
+                            }
+                            if (subhead.length==0||subhead.length>100) {
+                                message += '，副标题不能为空或者大于50个字';
+                            }
+                        }
+                        if (message.length==0) {
+                            var blockBox = $('.blockMsg').html();
+                            var channel = $('#channel').val();
+                            blockBox = blockBox.replace(' selected="selected"', '');
+                            blockBox = blockBox.replace('<option value="'+channel+'">', '<option value="'+channel+'" selected="selected">');
+                            $.blockUI('<img src="../static.jjwxc.net/images/loading.gif">  <strong>请稍候...</strong>');
+                            $.post('guanli/topboard.php', {action: 'top', board: board, topic: topic, channel: channel, remarks: remarks, cover: cover, subhead: subhead, msg: msg, sure: sure, r: Math.random()}, function(json) {
+                                if (json.status==200) {
+                                    alert_blockUI(json.message);
+                                } else if (json.status==100) {
+                                    $.blockUI(blockBox, {left: ($(window).width()-300)/2+'px', top: ($(window).height()-200)/2+'px', width: '500px', height: '300px', cursor: 'default', padding: '0', border: '1px solid #565656'});
+                                    $('.import_message').html(json.message);
+                                    $('.topboard_submit').html('<input type="button" value="　确　定　" onclick="$(\'#sure\').val(1);topboard_start();" />　　　　<input type="button" value="　取　消　" onclick="$.unblockUI();" />')
+                                } else {
+                                    alert_blockUI(json.message);
+                                }
+                            }, 'json');
+                        } else {
+                            message = '请填写'+message;
+                            $('.import_message').html(message);
+                        }
+                    }
+                    $(function() {
+                        $('#topboard').bind('click', function() {
+                            var remarks = '[文库][新三国][蒙瑜/策瑜？？]但为君故';
+                            var html = '';
+                            html += '<div style="font-size: 12px;">';
+                            html += '<input type="hidden" id="sure" name="sure" value="0"/>';
+                            html += '<div style="padding: 0 10px 0 10px;;background: none repeat scroll 0 0 #53B61B; height: 30px; border-bottom: 1px solid #565656;"><div style="float:right; padding: 5px;"><img src="../static.jjwxc.net/images/close.gif" width="12" height="12" style="cursor:pointer" onClick="$.unblockUI();"/></div>';
+                            html += '<div align="left" style="font-size: 14px; color: #FFFFFF; ; font-weight: bold; line-height: 30px;">推荐到首页</div></div>';
+                            html += '<div align="left" style="height: 300px; padding: 10px; line-height: 30px;">'
+                            html += '<div style="float: left; line-height: 48px;"><b>推荐到首页：</b></div>';
+                            html += '<div style="float: left; line-height: 48px; padding-top: 13px;"><select name="channel" id="channel"><option value="0">首页图推</option><option value="1">网站活动</option><option value="2">热贴推荐</option><option value="3">八卦娱乐</option><option value="4">创作心得</option><option value="5">情感天地</option><option value="6">树洞心事</option><option value="8">美图荟萃</option><option value="9">声色乐园</option></select></div>';
+                            html += '<div style="clear: both;">';
+                            html += '请填写推荐语：<br/><input id="remarks" type="text" style="border: 1px solid black; width: 400px; height: 20px;" value="'+remarks+'" name="remarks" size="33"><br>';
+                            html += '<span class="cover_show">请填写副标题：<br/><input id="subhead" type="text" style="border: 1px solid black; width: 400px; height: 20px;" name="cover" size="20"><br></span>';
+                            html += '<span class="cover_show">首页图推请填写图片地址：<br/><input id="cover" type="text" style="border: 1px solid black; width: 400px; height: 20px;" name="cover" size="20"><br></span>'
+                            html += '<div class="line_show" style="display: none; height: 54px;">&nbsp;</div>';
+                            html += '<div class="line_show" style="display: none; height: 54px;">&nbsp;</div>';
+                            html += '<div class="import_message" style="color: red; height: 20px; line-height: 20px;"></div>';
+                            html += '<div style="height: 30px;"><div class="topboard_submit"><input type="button" value="　确　定　" onclick="topboard_start()" /></div>';
+                            html += '<div class="import_loading" style="display: none; color: red;"><img alt="导入中" src="../static.jjwxc.net/images/loading_2010.gif"> 导入名单需要一会时间，请耐心等待</div></div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            $.blockUI(html, {left: ($(window).width()-300)/2+'px', top: ($(window).height()-200)/2+'px', width: '500px', height: '300px', cursor: 'default', padding: '0', border: '1px solid #565656'});
+                            $('#channel').bind('change', function() {
+                                var channel = $(this).val();
+                                if (channel=='0') {
+                                    $('.cover_show').show();
+                                    $('.line_show').hide();
+                                } else {
+                                    $('.cover_show').hide();
+                                    $('.line_show').show();
+                                }
+                            })
+                        })
+                    })
+        </script>
+                                                <table width="760" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td><a target='_blank' href='default.htm'>晋江论坛</a>→<a target='_blank' href='bindex.php' >网友交流区</a>→<a target='_blank' href=board.php@board=36&page=345>同人文库</a>                                                </td>
+                                            </tr>
+                                        </table>
+                                                                                <title>[新三国][蒙瑜/策瑜？？]但为君故 —— 晋江文学城网友交流区</title>
+                                        <table width="760"  border="0" align="center" cellspacing="0" style="table-layout:fixed;word-wrap:break-word;">
+                                            <tr>
+                                                <SCRIPT LANGUAGE="JavaScript">
+                                                    <!--
+                                                    var locked;
+                                                    locked =0;
+//-->
+                                                </SCRIPT>
+                                                <td bgcolor="#E8F3FF"><div style="float: left;">
+                                                                                                                主题：[新三国][蒙瑜/策瑜？？]但为君故 <font color="#999999" size="-1">[14,1342]</font></div>
+                                                                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td valign="bottom" width="300"><div class="image1"   style= "display: inline-block;"></div></td>
+                                                            <td><a name='p0'></a><div align="right"><img src="img/heart.gif" width="10" height="9">
+                                                                                                                                                <a href=" ../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">掌上晋江——博朗电子书</font></a>
+                                                                </div></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read"><div id="topic">但为君故<br><br>老文一篇，已经完结，OOC内牛，厚脸皮发。<br><br>好吧在下很久没在闲情正装过了一直双眼皮着~~~~作为一个死忠蒙瑜党我今晚慢吞吞爬上来尝试搜点资源于是搜索了关键字~~然后嘤嘤嘤嘤为啥只有几篇文嘤嘤嘤嘤！！！嘤嘤嘤嘤！！！（卖萌叉下去~~）于是我厚着脸皮来发文了。<br>这文还是今年年初（还是去年年尾？？）开始写的，文字功底和历史知识不够，硬伤一堆，各位海涵。<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>一.量<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>世人皆知，江东周郎，胸怀大度，美姿容，善音律。<br>亲近一点的，能知道些其它，譬如好美酒，喜投壶。<br>更亲近些的，如孙权主公、鲁肃……会知道他些小嗜好，譬如常饮冷酒，惯于夜读。<br>真正与周瑜为伴的，先有孙伯符、而后吕子明，当然，这里并不算上按常理说该是与他最亲近的小乔夫人，须知“相敬如宾”四字能形容的关系，涵义大有揣度空间，况且赤壁之后伊人便去向不明，至于是否改嫁什么的，暂不在讨论范畴。<br>为了美周郎的仪容仪表身心健康，吕蒙顶掉了从叫起更衣到斟酒添饭等一系列本该是小乔夫人负责的活，任劳任怨。经年之下，也渐渐知道了些或许连周瑜自己都不甚清楚的事情。<br>周瑜的酒量，便是其中一样。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>一日，大宴散席，众人或回府歇息或散步醒酒各自走开，吕蒙拎着被酒沾湿的常服衣袂远远盯着周瑜坐了都督府的马车出去宫墙，方才上马，拐回自己家擦了酒气油腥寻件新衣换上，只稍坐片刻，便又出门往都督府去了。<br>主公年少，大宴排了一半便下了阶带头行令投壶为戏，只把几个老臣气得吹胡子瞪眼，连道失礼。酒令凭的是文，投壶考的是武，周瑜都可谓是个中高手，连挫众人，可怜鲁肃量浅，被灌得头晕目眩无奈留宿宫中。周瑜大获全胜赢去了一堆彩头，孙权一高兴又拨了不少赏赐下来，一马车拖回都督府，此时全码在正厅。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙毫不意外的看见其中大部分是各色衣物，他只领着几个小婢将先衣服按冬夏面料分拣开来，挑出顶狐毛大氅令人送到周瑜房中去，又从其中挑出周瑜惯穿的形制颜色，并特别把孙权一时兴起直接扒下来赏的外袍嘱人仔细收好，剩下的，一股脑束之高阁。<br>“真是一日三换都有多的……”吕蒙翻了翻从荷包到环佩乃至连腰带都有的零碎彩头，该还的还该收的收实在记不得是哪家大人的东西就统统扫到盘里待明日大都督自行定夺。等来清点赐下来的十坛美酒时，小有诧异。<br>少了一坛。<br>叫来管家一问，道是大都督回来，兴致不减，便让人搬了一坛子内室喝去了。<br>吕蒙稍稍换算了下自己离开的时间与周瑜饮酒的速度，并加上宴上自己没挡去的许多碗，心中咯噔一下。<br>“剩下的埋在院中旧处，再送些热水到侧间去。”扔下一句话，吕蒙急急往内室去了。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>周瑜酒量算是不浅，可惜酒胆着实唬人，不知多少找大都督拼酒的将士都被硬生生吓了回去，江东周郎千杯不醉的名声倒是越传越大，若不是吕蒙确实见他醉过，或许还真信了这以讹传讹的说法。<br>更要命的是，周瑜自己信，因为在他的记忆中，没有酒醉这一遭。<br>也就是说，若是与旁人拼酒，或许还无甚事，一般不等喝得上头，来拼的那位就认输缴械了，可要是放他一人慢慢喝，多半模模糊糊就过了量，只可怜了旁人替他拾掇，周瑜自己，丝毫也不记得。<br>这个旁人，先是孙策，之后，换了吕蒙。<br>===========================================================<br>开新坑了~~~<br>说句实话~~这坑是在计划外的~~~<br>只是实在是鸡血了~~~~就写了出来~~~~~~~~~~~<br>因为没有规划的缘故~~~~~更新速度很危险~~~~具体章数也放不出来~~~~~~各位包含~~~~<br>HE还是BE不能确定~~~~~~~~~唯一肯定的是~~~~~有一个HE的现代番外~~~~~~~~<br><br>二、醉<br>从中厅入内室的门口，挂的是珠帘。<br>吕蒙挑起帘障时，周瑜早已喝得迷糊了，听见有不远处有声响，便半眯了双眼似嗔似怒般看过去。<br>方一进门，就见大都督眼尾泛红直直望过来，好似着意扔了个飞眼一般，吕蒙未有任何准备便受此超规格待遇，刺激甚大了不说，只闹的反射性一溜烟儿窜回中厅，按着胸口适应半天方平复些许，硬着头皮再度掀帘进去。<br>第二回，或许是周瑜没心情总注意有否哪位兄台贤弟围观自己喝酒，端坐不动，吕蒙总算是顺风顺水的靠到案边，轻手轻脚挪去了酒坛子，正端走酒樽之时，被人按下。<br>“做什么？”周瑜一手拎着酒碟，一手使力把住樽口，尾指堪堪压在吕蒙手背上，眉头半皱双唇紧抿，似乎十分不满。<br>“这个空了，末将去添些来，大都督莫急。”吕蒙低声劝道，随后轻轻捏了周瑜腕子抬开，端了酒樽去，又倒足一壶酽茶回来，放在案上。周瑜见他果真回来了，不满的神色收了不少，只半撑了案几，拿了酒碟歪歪斜斜递过来，似乎是让吕蒙斟给他的意思。<br>吕蒙见碟子里仍落了不少残酒，便重新取了个碗倒了茶，送上去，看周瑜没有接的打算，便端开他手中的酒碟，将茶碗原样塞进他手中，道：“都督喝一口这个。”<br>周瑜抿了一点，便扔下了，抱怨道：“苦。”<br>“新酿的，不苦。”吕蒙见他端得不稳，便扶了碗沿凑到周瑜唇边，道：“都督再试试。”<br>周瑜依言又喝了一大口，眉头迅速皱起，似乎是碍着面前的茶碗，忍耐了一下便咕咚一声咽了。吕蒙不等他说话，便又扶了碗沿凑上去，只道：“喝完就不苦了。”<br>周瑜听了，忍着喝完了面前的茶水，顿了半晌生气道：“……你骗我。”<br>“未曾……”吕蒙寻了备下的蜜浆和了一小盏水来，换了个碗仍是一样端上去：“……还余了些。”<br>周瑜少少尝了，似乎是满意，便自己喝完，撂了茶碗半撑着额头，松下气力来歪歪坐着。<br>吕蒙见他似是困了，便搀了周瑜左臂扶他起来，摇摇晃晃送去榻上躺下，掖了掖被角正待走开，又被一把扯住。<br>“伯符……”周瑜拿拳头锤了锤床板，道：“坐下……和我说话。”<br>“大都督，是末将。”吕蒙将翻起一角的被子重新压好。<br>“伯符。”周瑜坚持。<br>“好，伯符。”吕蒙深知不能与酒醉时的大都督讲任何道理，便顺势在榻下脚踏处坐下，回道：“都督要说什么话？”<br>“你叫我……什么？”<br>“……都督。”<br>“不……对。”<br>吕蒙一时怔了怔，那两字在胸口绕了万遍，到了嘴边却吐不出来。他深深看着周瑜因酒醉而泛着浅红的侧脸，沉默下来。<br>“伯符！”周瑜没能听到自己满意的回答，一味催促。<br>片刻之间，吕蒙脑中已转了许多个念头，抓住的抓不住的，嘈杂不去。<br>……<br>……也许……这没什么……<br>大都督此时……当我是先主公……而已……<br>……<br>明日，他便不记得了。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>“……公瑾。”吕蒙低声唤道。<br>“……恩。”周瑜哑声应了，偏过脸给出个笑来，似乎是满意了。<br>吕蒙没再说什么其他，周瑜再有些含糊不清的问话他也统统不答，只守着他慢慢合眼睡了，方才离去。<br><br>三、笼<br>东吴军中，众人皆带甲。<br>普通兵士不必说，只自伍长起，甲胄便依了军阶，各有不同，略略算来，也有数十种之多，左右军中郎将之类等等，往往都备了数套。<br>披甲若不论制式，只分三种——大、中、小。<br>且各部件连缀之处往往是活片，若有什么不适合的地方，各人依各人身材调了，并不费事。<br>头盔只分两种，据说是受铸造时模具炉火等条件所限，只能铸出毛坯来再加工。且原本都是一样大小，后来为了照顾某些头颅特异的江东子弟，才加了一种大些的。<br>通俗道来，就是只分普通，和特大。<br>毕竟头盔这东西，平日里应用太少，只要能扣上脑袋去，便没什么好讲究的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>吕蒙往中军帐中去时，着的是新甲。<br>那一日恰好是江东将士更换军备的定时。兵士们按人头配发新甲，旧甲依例上交，发到之后马上试过，有什么不妥即刻更换，若误了时日，少不得又得缝缝补补凑合数年。<br>吕蒙先前拿的是中甲，试过后又换了大甲，绞好束带活片，再试时，发觉没了旧甲稍带的逼仄，双肩也舒展不少，想起这三年里自己总被鲁肃笑话是少年人，心中隐隐有了个缘由。<br>大都督听了，总往他身上打量，也是为这个？<br>男子过了二十五，还能长高？<br>百思不得其解。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙通报进去时，周瑜正站在书案旁，身上是全套的新甲，还未束紧，手上，端着一顶头盔，似乎在思考什么，见吕蒙来了，只转头看了一眼，示意不必拘礼，便又将注意转回。<br>“都督在试衣？”吕蒙站起身来，问。<br>周瑜点头，答道：“嗯，方才换上，你便来了。”<br>吕蒙靠上前去，替周瑜把束带一一系紧，又合上活片，道：“末将打搅都督了。”周瑜并不在意，半抬了胳膊，随他动作，又看了看吕蒙身上的新甲，笑说：“换大了一号，看起来倒是正好。”<br>“是，不知为何，或许是末将这几年长高了点。”吕蒙一面答话，一面重新拆开活片来卡进一些，道：“大都督的甲长度是正好，但似乎宽了少许。”<br>周瑜自行调了调腰带，拿食指将手中的头盔一敲：“你么，横着长了，我是一向如此，只是，它大了。”<br>“大了？”吕蒙有些奇怪，顾不得周瑜前句意思，接了盔左右看看，又比了比自个的，愈发不明：“大小是未变的，都督的旧盔也如此吗？”<br>周瑜摇头道：“未曾，所以这次才觉着奇怪。”<br>吕蒙想了想，男子成年，身高或许还能有变，但这头围还能缩便是匪夷所思之事，他盯着周瑜半束起的发髻打量到耳畔，又不自觉伸手比了一下，才道：“这盔确实大了些，不如，都督多加层衬垫罢。”<br>“主公有召，这一时半会的，上哪儿找合适的去。”周瑜只又动了动肩臂，确认身上的甲合贴了，伸手问吕蒙要盔：“明日再想吧，今日先这样了。”<br>吕蒙只笑，将头盔置在一旁，又东摸西摸找了梳子来，道：“都督寻个地方坐下罢，末将替都督将发束低些便是了。”<br>周瑜顿了片刻，似是碍着身上的重甲，又左右看了看，将几卷文书扫开了，撩起衣摆坐在书案上。<br>吕蒙绕到书案后头，替周瑜拔簪散发，又在脑后重新盘过，再拿了头盔来一试，问：“可曾好些了？”<br>周瑜单手扶了盔摇了一摇，道：“好些了，只还是松着。”<br>“大都督先这么顶片刻罢。”吕蒙从兵器架上取了剑奉与周瑜：“末将去想想办法。”<br>两人一前一后出了中军帐。<br>吕蒙站在营门看周瑜往宫中方向策马去得远了，才回头往辎重营中走。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>此回来押旧甲的郎官起先做了多年兵士，识得不少人，见吕蒙进来，连连行礼。吕蒙挥手免去，问他：“大都督的旧甲送来了吗？”<br>“在此处。”<br>吕蒙顺着郎官所指看见一幅甲单放在架上，扣了一顶盔。周瑜用的，自是军中最好的。此次铸盔造甲，此种制式的也只大、中、小各成一件罢了，且是先送来予周瑜选完，余下的才修改纹饰分去另几处驻地。吕蒙上前去拿了头盔下来，方才入手，便觉着制式已很旧了，盔上镌刻的纹理磨损了不少，一侧开了一道小指宽的口子，似乎是新裂的。<br>“大都督的盔多久没换过了？”<br>“小人到任五年有余，这还是第一回大都督连甲带盔一同送来，之前情形，小人不知。”<br>吕蒙想了片刻，只说：“此物我带走，明日送回。”<br>郎官拱手让道：“将军请便。”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙带着盔回了自己帐中，就着天光仔细看了看。<br>制式确实是很旧了，自己入军第一年曾见过而已。纹饰有一些修改重铸过，但也该是许久以前的事了。估计若不是这回裂得太宽，都督也不会换它。<br>吕蒙将盔翻过来，摸了摸里面的衬垫，觉着似乎有些不同，便想拿出来看，一动之下，才发现内里似乎是垫了软木的胎，稍稍卡小了一圈，外面包了其他东西，仔细一看，似乎还是手缝的。<br>针脚，甚为……笨拙。<br>吕蒙想起周瑜常常戴着这顶盔，莫不是它大小最合？<br>忍不住比了比自己手掌。<br>五指并拢，再去了一截。<br>大都督的脸，真是挺小的。<br>吕蒙笑了笑放下那顶旧盔。<br>明日该怎么弄，多亏了起先替都督打理这人。<br>只要记着顺路将它送回辎重营才好。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br><br><br>四、乘<br>江东军中，兵士数年一轮，更换营房，将随兵走。<br>反之，营盘不动，驻地无战事不移。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>本旬，吕蒙是第二次看见周大都督独自出营。<br>他只迟疑了片刻，便急忙牵了马来跟上去，大都督身负重责大任，万一有何闪失，江东危矣。<br>待跟着一路上了河畔小道，周瑜似是听见了什么，回身望了一眼，见是吕蒙远远吊着，便转了回去继续前行。<br>起先周瑜还是信马由缰，走走停停，接着便越骑越快，沿着小道策马飞奔起来。<br>吕蒙见他只是在直道上纵马，不往林中绕，便放心抖了缰绳跟着，无奈一时情急，牵出的是匹驮运军马，远远及不上周瑜座下良驹，只片刻便看不见前方人影。<br>所幸，河畔直道少有岔路，吕蒙半寻半赶了大半个时辰，方才远远看见前方多了匹马，正在河边自行寻草吃，旁边不远，有个身影仰躺在草地上，左臂垫在脑后，直直望着天空。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>“大都督！”吕蒙扔了马缰，走上前去。<br>“嗯。”周瑜低声应了一声。<br>吕蒙在周瑜身边半跪下来，道：“水远林深，都督若无大事，请……早些回营罢。”<br>“无碍。”周瑜保持着躺倒的姿势未动，甚至连目光也不见少许偏移，顿了片刻，才答：“你若是担忧，只替我守护一段便是。”<br>吕蒙闻言，自己寻了个稍高的地儿站下，正正经经打直了背脊，甚至隔那么一会就四处张望一回，手上始终扶着剑柄。<br>周瑜见他那副十万分认真的样子，不由暗笑了两声，复转头继续望着天空远处。<br>这日，阳光虽不刺人，但也甚为耀眼，周瑜心中转的念头多了，一时不察，给硬生生照得两眼泛红，逼出滴泪来。他自己伸手擦了，稍眯了一会，再睁开时觉察阳光暗下不少，转头一看，果然是吕蒙不知何时悄悄挪了个位置，替自己在一片平旷的河畔，挡出小片阴影。<br>“吕蒙。”周瑜唤道。<br>“大都督有何吩咐？”吕蒙拱手。<br>“坐近来。”<br>吕蒙一声不响的，走近周瑜躺着的地方，拣了地方坐下，仍是替周瑜挡着阳光。<br>暖阳下，影子拉得，回忆般长。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>“吕蒙啊，你为何跟来？”周瑜突然问。<br>“大都督独身出营，这是第二次，附近林深路远，末将担忧，宵小拿了规律，趁机作乱。”吕蒙不假思索答道。<br>周瑜听了他的话，突然沉默下来。<br>吕蒙不明所以，只当周瑜是烦了，便自个挪了挪，退到他看不到的地方。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>等太阳慢慢落去山尖时，周瑜方才揉了揉双目，撑起身来坐着。<br>“我当年，曾在这一片驻过。”他左右望了望，指向南面：“大概……在那处附近。”<br>“都督是为重游旧地？”<br>“是啊，可惜……此地只远山长天未动，就算是河道，也走偏了些许。”周瑜叹道。<br>“大都督记得，末将何曾忘记。”吕蒙四面望了望，道：“原本河道那处，有块浅滩，如今变了苇地，还有这面的林子，本不是这样深的，末将进去寻过猎，晌午出门，近晚便能回。”<br>“……总有未曾回的。”<br>吕蒙愣了一刻，方才明白周瑜说的是谁。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>“天晚了，走吧。”周瑜如此说了一句，慢慢沿着河滩踱出一截来牵了马，乘上等了一会，却见吕蒙讪讪空手跑回来。<br>“大都督……末将的马跑了……”<br>周瑜失笑，道：“你未曾栓？”<br>吕蒙摇头：“那时见都督在前面，哪顾得上……估计是到了喂粮草的点，又是匹驮马，就自己跑回去了……”吕蒙想了想，道：“都督先去吧，末将晚些回营。”<br>“你如何回营？”周瑜望了望河川：“我驰出半个时辰，少说也有数十里地，莫说子明你打算走回去。”<br>“……”吕蒙无言，难不成还能游回去？<br>“上来。”周瑜递出左臂来。<br>“末将不敢。”吕蒙拱手道。<br>“我累了，替我控缰。”<br>吕蒙撤了礼，抬头看周瑜。<br>他的大都督骑着白马，英武不凡，背后，是静默燃烧的夕阳。<br>胸中重重的跳了一下。<br>吕蒙着魔一般接过周瑜递出的手，吻在他掌心。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>这一下，两个人都愣了。<br>吕蒙反应过来，一下子单膝跪倒在河滩上，拱手道：“请大都督先行。”<br>周瑜握了握拳头，目光在掌心和吕蒙身上打了数转，片刻后，一抖缰绳，沿着河畔直道纵马而去。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>营中定规，亥时三刻辕门关闭，宵禁。<br>无故迟归者，脊杖十五。<br>吕蒙一直到子时初刻才归营，带着两肩露气，靴上沾足了泥痕。<br>守门的卫兵见是吕将军迟归，有意不做声张，静悄悄开了半边门放他进来，谁知吕蒙方才入营，便直直往刑帐去了。卫兵不明所以，赶忙匀出一人追去，在刑帐门口拦住他，问道：“将军做什么去？”<br>吕蒙并不理会，只掀了刑帐帘子，朗声道：“无故晚归，按律脊杖十五。”<br>他几下卸了身上轻甲，伏在窄案上，喝道：“打！”<br>掌刑的兵士面面相觑，一时竟无人操杖，最后还是帐中老兵拽了身边的一个，战战兢兢打完，扔下杖便躲去一旁。<br>吕蒙只拿了甲，重新扣紧，掀帘出去。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙慢慢走回帐，半道上，撞见周瑜急匆匆往他这边来了。<br>“吕蒙！”周瑜见到他，似乎是松了一口气，但只瞬间面色又见黑沉：“与我来。”<br>两人一路回了周瑜的大帐。<br>“脊杖十五？”周瑜问。<br>“是。”<br>“……我看看。”<br>吕蒙本欲拒绝，抬眼见周瑜双眉紧锁，便乖乖解了上衣，露出伤处。<br>周瑜见他背后只一片红紫，估计兵士留了手，心下稍安，便从盒中翻出一小瓶伤药来予吕蒙，道：“……莫有下次。”<br>吕蒙并不答话，面色沉静，只默默接了周瑜递来的小瓶子，合上衣襟，拱手道：“末将告退。”<br>周瑜挥挥手，从帘子缝隙看他一路往帐中去了，便如常到书案后坐定，只拿起简文来，无论如何，看不进。<br>两边的灯火，俱是明了整夜。<br><br><br>五．伤<br>周瑜的箭伤，落在胸口，稍偏左下。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>这一役，江东子弟，伤的惨重。医帐送去的伤兵，疾如流水一般，却仍是应对不来。药僮在大帐外转了三回，替周瑜裹伤的大夫只得留了一长篇医嘱，赶去帮手。<br>吕蒙守在周瑜塌旁，一步也不敢离开。<br>箭头淬毒，一时寻不到方子解开，暂且静养，切忌移动。<br>吕蒙拽过军医看伤时用的木墩坐了，看着榻上昏睡不醒的周瑜，心痛如绞。他不敢碰周瑜，担心拿捏不好带动他伤处，便一遍遍用眼光扫过，藉着他面色呼吸，揣度伤情。<br>周瑜脸色因失血而显得苍白灰败，面颊上却淡淡浮着一层燥热的赤红，吕蒙拿食指轻轻贴了他额头一探，滚烫。<br>这是晚间毒性散出，上了热度。<br>吕蒙绞了帕子给周瑜敷在额上，又重新坐下。<br>帐内分明无风，灯火却闪动得厉害。<br>吕蒙恍惚觉着榻上人安静得似乎是已在自己未曾注意之时悄悄死去了，便急忙探了探周瑜鼻息，又在他裸露的侧颈上按了一会，寻到皮肤下虚弱却清晰的搏动，方才长舒了一口气。<br>箭有剧毒，但大夫说只需静养，不再动怒，便有痊愈的一日……<br>只是箭伤而已，能好的。<br>吕蒙盯着周瑜昏睡的侧脸胡乱想着。<br>大不了都督去了，我陪他一路就是。无论是陪葬还是镇墓，都做得……<br>他突然意识到自己在想些什么，猛地往胸口锤了一下。<br>不可能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>吕蒙看见周瑜的嘴唇，微微的动了一动。<br>他附耳去听，却有些不懂。<br>那估计是哪处的吴地方言，带着浓浓的鼻音与软糯，慢慢吐出，一字一顿。<br>其实自吕蒙从邓当入军中起，听得的多是各种吴地方言，只是此时心中焦急，加之周瑜吐字模糊，一时竟辨不出他话中意思来。<br>过了半晌，他听得周瑜再度开口，便又小心俯身上去。<br>这次很清楚。<br>周瑜在唤……伯符。<br>吕蒙听许多人回忆过，抑或是惋惜过江东早逝的先主公，但他们的语气，都不是周瑜这般的。<br>那些赞许与称颂，或许都比不上周瑜伤重时的，这一声呼唤。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>大都督，您有多痛？<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙轻轻掀开一角棉被，取了双握合来，小心扳开周瑜紧攥的双拳，填了一个进他右掌，顿了顿，悄悄握住周瑜左手。<br>掌心相和。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>东方微白，吕蒙不知自己守了几个时辰。<br>这些时间内，周瑜仍是昏睡着，或有呢喃，大多也吕蒙听不清的。<br>随着天光渐亮，他额上的热度也慢慢退去，此时两头奔忙整晚的军医才真正拿了空闲，背了药筐来替周瑜细细开方熬药。<br>吕蒙见大夫进了帐子，本欲松开手，却发觉周瑜手指上是稍稍使了力气的，便仍小心握着。<br>大夫上前来再度仔细看伤，见两人这般情状，轻声示意吕蒙不要随意拉扯以免带动周瑜伤处，言毕急匆匆扛了药筐回医帐煎药。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>一直到这日午时，周瑜才慢慢醒转。<br>他的目光先是淡淡扫过帐顶，而后，定格到守在一旁的吕蒙身上。<br>吕蒙感觉到，周瑜的手指微微颤了一下，卸去了力道。<br>他执拗的继续握着，直到周瑜作势要起身，方才急忙抽开来，扶住他肩膀，道：“都督轻些。”<br>周瑜只依着他力气靠坐起身，问：“军情如何了？”<br>“都督不必担忧，程老将军已安排妥当。”<br>“……去寻德谋将军来。”<br>吕蒙迟疑了一刻，仍是拱手领命，嘱了亲兵去寻军医，又命人好生守护，方才掀了帘子出帐去。<br>吕蒙不再进大帐，只看着先是亲兵叫来了大夫，而后是卫兵寻来了程普将军。<br>许多人转进，再转出。<br>他看了看自己手掌。<br>拇指指跟，被周瑜无意识间，掐出了个浅浅的半月印子。<br><br>六&nbsp;&nbsp;不负<br><br>诺不轻信，故人不负我；诺不轻许，故我不负人。<br>&nbsp;&nbsp;<br>吕蒙自周瑜伤后，便很少晚间去他营帐。<br>曾几何时，吕蒙热衷于在初更之后溜去见他的大都督，或是借他案上还未曾烧掉的书卷看，替周瑜铺床卸甲，劝他早些歇息。<br>而后，揣着几句略带笑意的逐客令，溜回自己帐中，乐此不疲。<br>直到发觉，有些事情，并不是他自己说停止，就真停止了。<br>那些迷蒙的崇敬和奢望，花了十年的时间，暗自疯长，直至堵满了胸口，留不出丝毫退缩的余地。<br>这是周瑜不需要的东西。<br>所以吕蒙也不需要。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>初更的军鼓敲过，吕蒙远远看着中军大帐。<br>昨日灯火通宵未歇，前日亦是。<br>他迟疑了片刻，仍是起身前去。<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>守夜的卫兵见是他，只躬身行礼后便打起了帐帘，并未通报。<br>隔帘不曾放下，吕蒙一眼便看见周瑜半倚在靠几上，神情带笑，指间拎了张酒碟，面前摊放着一副地图。<br>烛火下，他的面色晦暗难辨，双颊和眼下阴影很重，但目光，仍是坚定有神的。<br>“大都督。”吕蒙拱手。<br>“不必多礼。”周瑜指了自己塌边，笑道：“你来得正好，坐近来。”<br>吕蒙依言走近，左右看看，只挨着脚踏旁坐了。周瑜并未在意，指着地图道：“吕蒙，你看看此处，看见了什么？”<br>泛黄的皮纸上，线条交错，清晰勾勒出山河轮廓，间之城池，山林。吕蒙只稍稍看了看，便认了出来。<br>“这是……蜀地？”<br>周瑜只拿食指从地图一端划过来，又多圈了两处，方才道：“蜀地，襄阳……和荆州。”<br>吕蒙沿着他指的路线看过，心中一震，不由急急抬头望向周瑜求证。<br>周瑜见吕蒙已有所悟，低声笑道：“正是如此。”他顿了一顿，又多点了几处来，道：“明日，我便向主公进言，举兵取蜀。若蜀地归了我东吴，并了张鲁，再拿了襄阳地，到时前据荆州，背靠蜀地，又兼有江东阔土，莫说刘备诸葛如何，便是北方曹操也可取之！”<br>周瑜虽刻意压着声音，却掩不住言语中的振奋，得酬壮志，开疆扩土，仿若只待明日。<br>吕蒙听得周瑜所言，心情激荡，连连拱手道：“大嘟嘟英明！”<br>周瑜此时也甚为高兴，随手将酒碟扔在一旁，便与吕蒙继续说些细节，点着地图比比划划，一番彻夜长谈的架势。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>不多时，吕蒙便察觉到，周瑜说话间，多少夹了几声咳嗽，起先还断断续续，待说得稍久了，便不得不时时停下清嗓，气息也渐渐乱起来。<br>吕蒙见他情形似有不好，便劝道：“都督早些歇息罢，待明日再讲也可。”<br>周瑜方才摆手道：“无事……”，便猛地咳嗽不停，吕蒙急忙上前去扶，只觉着手上溅到几处温热，待周瑜稍稍顺过气了，低头一看，却是数点暗红。<br>“大都督您如何了！”吕蒙此时扶着周瑜半个身子，见他仍是不好过，便小心退往塌边坐了，半揽着他靠到软枕上。<br>周瑜却并不答话，紧闭双唇，方才掩住口的右手也攥住不放，藏到背后。<br>吕蒙拉住他腕子急道：“与我看一眼！”<br>周瑜手上使了力气不愿松开，吕蒙眼见着他指缝中都透了些红出来，心下明白周瑜这是咳血不愿人知道，强作无事，一时间竟急的言语发颤，只低声求道：“大都督，您松开，只、只与末将看一眼……”<br>周瑜低垂着双目，手上松了气力，吕蒙端了他腕子到胸前，慢慢掰开。<br>掌心血红一片。<br>“大都督，昨日军医与我说，您的伤情已有好转，这……”吕蒙一时无措，竟不知能说什么，只得垂首道：“……大都督，请您保重身体！”<br>“我自己的身体，我自己清楚。”周瑜拿食指关节慢慢蹭去下唇血迹，缓了一会，便扶着吕蒙肩膀尽力坐直身子，沉声道：“此时曹操刚刚受挫，万不会轻易动兵，若要拿下蜀地，这，是最好的机会。”<br>“大都督，您伤势未复，如何带得兵……”<br>“我说好了，便好了。”周瑜半侧过脸，盯着吕蒙双眼：“方才之事，莫说予第三人知晓。”<br>吕蒙赫然明白，为何军医告知自己周瑜伤势好转之时，那般迟疑沉痛。<br>“大都督！不可啊！您这是……您这是拿性命在拼呐！”<br>“吕蒙啊……你还不明白么……”周瑜望了一眼染满鲜血的手掌，沉默良久，而后慢慢闭上双眼：“……这是，瑜最后的机会了。”<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>吕蒙无法言语。他只觉自己胸腔中，有什么沉重的坠落了，耳边嗡嗡作响，嘈杂一片。<br>他看见周瑜吃力的擦净血迹，而后摆手示意他出去。<br>他如同一头受伤的虎，猛地扑上去，将他心心念念了十年的人压倒在床榻上。<br>不顾一切的吻下。<br>周瑜反射性的狠狠一掌击在他颈侧，将他掀到一边，吓道：“吕蒙！你做什么！”<br>“大都督！”吕蒙几乎是立刻扑回来，他不知该怎么做，甚至不明白此时自己在做什么，只是死死按住周瑜膝盖，不让他起身，也不让他离开。<br>他发觉自己看不清东西，眼前一阵阵发黑，明白这是周瑜刚刚那一掌敲中了经脉。<br>吕蒙顾不得那么许多，他只想让周瑜留下来。<br>如此便能继续，给他守护。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>周瑜从没看过吕蒙这般样子。<br>他平日里，只见过吕蒙沉默的守在一旁，或是微笑着询问，或是低头拱手，赞一句大都督英明。<br>此时的吕蒙，明显是慌乱着的。<br>他压着自己膝盖的手在发颤，双眼没有焦点，目光只是胡乱的在自己身上转着，似乎看不见东西。<br>或许自己方才内一下，真的敲得很重。<br>“吕蒙，你做什么？”周瑜又问了一遍。<br>回答他的是一个吻，小心翼翼的落在掌心的吻。<br>吕蒙半跪在塌边，慢慢抬起头来，目光由浑沌，渐渐转成坚定。<br>“大都督，吕蒙，此生不负。”<br>周瑜静静的看着吕蒙。<br>他在他的帐下待了十年，周瑜甚至能够回忆，当初孙策领了吕蒙来见他那时，有很暖的日光。<br>那是连续了半月阴雨后，放晴的首日。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>END<br>穿越指南：内句话是宋朝的~~~但是~~~原谅我忍不住~~~~~<br><br><br>======================这是脑补HE和BE的分界线==============<br><br><br>尾声&#8226;燃<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>建安二十四年。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>吕蒙很少回忆过去。<br>他只是跪在周瑜坟前，看着炉中三炷檀香一点点燃尽，青烟在半空中消散无踪。<br>他觉得自己并未陪伴周瑜很长的时间。<br>十年罢了。<br>而离开的时日，只是一晃，便足足九年。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>周瑜走的时候，吕蒙替他打点了随葬。<br>惯用的笔，砚，衣物，弓，铠甲，佩剑，甚至是常用的发簪，把玩过的玉璧，酒碟。<br>能带去的，都掩埋在黄土之下。<br>不能带去的，都被一把火烧了干净。<br>最终，吕蒙站在都督府空荡的正室中，恍惚觉得，这座宅邸，和自己，就是最后被剩下的物件。<br>连一把火，都无从求取。<br>&nbsp;&nbsp; <br>他记得那天晚上，周瑜的回答。<br>不负江东。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br><br>=======================================<br>别问我番外在哪，它不在那里，只在坑里。</div>                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left"><font color=99CC00 size="-1">№0&nbsp;</font><font color=99CC00>☆☆☆</font>anna.loki</b><font color="99CC00">于</font>2011-05-30 23:01:08留言<font color=99CC00>☆☆☆　</font></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="1"><div align="right">
+                                                                                                            </div></td>
+                                            </tr>
+                                        </table>
+                                        <div align="center"><hr width="760" color="#99CC00" size="1"></div>
+                                        <table width="760" align="center" cellspacing="0">
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-05-30 23:09:39"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                作为一个坚定的蒙瑜党，同样对这里个位数的蒙瑜文表示痛恨……<br>楼主把你所有的坑（= =）都搬过来吧！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№1</font>&nbsp;<font color=99CC00>☆☆☆</font>wwilson</b><font color="99CC00">于</font>2011-05-30 23:09:39留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-05-31 03:33:24"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                蒙瑜真是萌死了，一想到这个CP就觉得暖暖的，关于延续关于继承，我的梦你最懂什么的……                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№2</font>&nbsp;<font color=99CC00>☆☆☆</font>无路可走</b><font color="99CC00">于</font>2011-05-31 03:33:24留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-05-31 21:45:51"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                歪头~~~<br>既然这样，那就把这个坑番外发过来把也。<br><br>日光倾城<br><br>《但为君故》番外<br>声明：因为此番外西皮为蒙瑜，所以，阿策就炮灰掉了，而且是很狗血的炮灰掉的。因此，慎入！！！！如果有姑娘觉着自己木有办法接受阿策一开始就死掉，还是请无视这篇OOC现代番外吧，真的真的真的慎啊！！！<br><br>另：同人作品，纯属娱乐。文中一切人物资料虚构，与现实团体及演员无任何关系，@真人的胖100斤不解释。<br><br>（一）二月十四 暴雨<br>吕蒙。<br>原籍山东，大学毕业后被家中亲娘扫地出门，赶去外面闯荡。<br>“男儿志在四方！”带着母亲的一句嘱托和她花了两天时间打了又拆拆了又打的行李包，吕蒙就这么孤身一人踏上了他从未到过的土地，开始了他的奋斗史。<br>到如今，足足五年。<br>吕蒙现今自己开着一家小小的快递门店，加盟连锁性质。他在这家店做了三年员工，老板回故乡结婚之前，把店低价盘给了他，才算是真真正正有了个落脚之处。<br>成家立业，立业成家。<br>按道理现在业勉强算是立了，是不是，能考虑成家了？<br>吕蒙如此纠结的思考了许久，还打了个长途回去向自家娘请示，得到亲口懿旨——俩字，自便。<br>老太太们不是该很爱给别人介绍对象么，这什么情况？<br>&nbsp;&nbsp;&nbsp;&nbsp; <br>好吧，城里的姑娘们眼光还是很高的，什么有车有房父母双亡高大威猛入得厨房温柔浪漫一心一意……何况，她们说话一提高声调且快起来，我就只能听个大概。<br>吕蒙如是开解了自个因很有可能十年内讨不到老婆而小有受创的心灵，选择继续当个快乐的光棍。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>上几个公司交了件，吕蒙看看表，已经将近7点。<br>不知为何，今日路上较往常拥堵很多，无论是人和车都有量与质的变化，店家开着大喇叭放流行金曲，家家爆满。<br>吕蒙无奈的吐出一口白气，把车靠边泊了，尝试找个吃饭的地方。<br>昨晚上应该是最后一包泡面没错。<br>嗯，虽然是前任老板留下的二手夏利，但吕蒙也是有车一族。<br>不是所有的快递哥哥都骑小绵羊的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>方才走了几步，吕蒙便感觉脸上溅了了点东西，抬头一看，下雨了。<br>新年刚过就下雨？<br>吕蒙一面腹诽着这神奇的天气一面就近找了家小餐厅，打算凑合一顿。<br>一推门，吕蒙反射性收回了几乎迈进了大半的脚，无语凝咽，店里的人不是多，而是相当多，就这么一推门的功夫就收获了白眼若干冷瞥数个，潜台词不外是“又一个！”三字而已，可惜门外寒风萧瑟雨丝连绵，除了别无选择往里进之外更无避雨的办法，吕蒙努力扒开三五成群的客人找了个看起来有比较结账迹象桌子在旁站着等。<br>因下雨的缘故，店里这会一下又进了不少人，大多被大雨寒风整得狼狈，此时吹着暖气缓过来，各自整理自身。<br>吕蒙在人群里看见了一个青年人，年纪与他或许相当，穿着合身的休闲西装，衬着浅灰的羊毛衫，衬衫领口随意打开着。吕蒙看了看自己身上还没换掉的羽绒服和厚牛仔裤，莫名的打了个冷战。<br>青年人拂去袖子上的水珠，又稍稍理了理衣领，低头左右扫视，估计是看见裤脚或哪处溅了污浊，皱了皱眉头有些不满的样子。<br>与他一同的进来的另一个，剪了利落的短发，此时正左顾右盼着。两人身高相仿，连脸上的笑容也有些相似，他从身上摸出半包纸巾来递给同伴，那人笑着接了，又与他低声说了几句什么，两人一同四下去寻位置。<br>吕蒙就这么凝神看着他俩绕过店家架设的简单隔断，消失在一盆塑料制成的廉价假花背后。<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>二十五分钟。<br>又十分钟。<br>吕蒙坐在好不容易等来的位置上无比迅速的扫荡着好不容易等来的套餐。他吃得很快，几乎是把乘荷叶饭的竹盘子端起来倒，几筷子夹干净附送的蔬菜，再一口喝干小汤钵。<br>“我吃完了，你们坐吧。”他站起来对桌边不远等着的两人道。<br>“谢谢。”对方笑着点头。<br>吕蒙觉得心跳的有点异常，他顺着青年羊毛衫倾斜的领口，一路瞄过衬衫的边缘，又转到青年人脸上。<br>笑起来真好看。<br>左边脸颊上有颗泪痣来着。<br>原来，他比我年长……吧……<br>他看见对方困惑的歪了歪头，然后发现自己傻乎乎堵在椅子前面似乎已经蛮久了。<br>“……啊！不客气，你们坐！”吕蒙急忙让开，从两人身边擦过头也不回的走出店门口。<br>然后在滴着水的屋檐下站定。<br>雨真大。<br>他偷偷回头，隔着店家紧闭着的雾气朦胧的玻璃门和一系列形形色色的隔断盆栽花架，试图看清自己原来坐着的地方。<br>只能看见模糊的背影，是和他一起来的那个同伴。<br>好大的雨，估计没法走回家。<br>吕蒙抬头看着灰暗的天空，完全忘记了自己可怜的小夏利还停在街角，正被免费酸雨无情洗刷。<br>他就这么固执的站在一家小饭店的屋檐下，一动不动，直到背后有人问道：“啊，你还没走？”<br>“嗯。”吕蒙只侧了侧眼睛就看见浅灰的衣角，又转回去看着天空：“雨有点大，小点再走。”<br>“也是……”青年两手空空显示了他面临的同样尴尬。<br>然后吕蒙看见和他同来的那个人，笑嘻嘻的在他肩头揽了一下，说：“我去对面超市弄两把伞来。”然后一个箭步，窜进雨幕中，远远抛来一句：“等着！”<br>于是两个大男人就毫无公德心的堵在饭馆门口等待兼避雨。<br>“那个……我姓吕，吕洞宾的吕，叫吕蒙，你呢？”吕蒙侧过脸与现在和自己并排站着的青年搭话。<br>“周瑜，握瑾怀瑜的瑜。”<br>“哈……”吕蒙有些不好意思，他没听懂对方的名词解释，想不出接下来的话。<br>幸会幸会？<br>How do you do？<br>然后他看见周瑜的双眼突然睁大了，几步冲进了雨幕。<br>撕裂一般的刹车声。<br><br>===================================================<br>如果没有成坑，这番外大概是五章完结。                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№3</font>&nbsp;<font color=99CC00>☆☆☆</font>= =.</b><font color="99CC00">于</font>2011-05-31 21:45:51留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-05-31 21:46:49"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                于是我是忘记换马甲的作者无误<br>双眼皮泪痣暴露了嘤嘤嘤嘤~~~~~                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№4</font>&nbsp;<font color=99CC00>☆☆☆</font>= =.</b><font color="99CC00">于</font>2011-05-31 21:46:49留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-05-31 22:09:00"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                顶啊，这文其实很喜欢。<br>楼主是来更文了么，期待啊                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№5</font>&nbsp;<font color=99CC00>☆☆☆</font>怀瑾握瑜</b><font color="99CC00">于</font>2011-05-31 22:09:00留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-06-01 23:58:00"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                作为坚定的瑜粉，喜欢这文，也蒙着蒙瑜                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№6</font>&nbsp;<font color=99CC00>☆☆☆</font>朱鹮</b><font color="99CC00">于</font>2011-06-01 23:58:00留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-06-02 22:13:32"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                虐死了！！！蒙蒙~~~大都督~~~~~~菇凉你写得太好了！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№7</font>&nbsp;<font color=99CC00>☆☆☆</font>/(ㄒoㄒ)/~~</b><font color="99CC00">于</font>2011-06-02 22:13:32留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-06-04 05:38:06"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                于是阿策炮灰了么……                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№8</font>&nbsp;<font color=99CC00>☆☆☆</font>= =.</b><font color="99CC00">于</font>2011-06-04 05:38:06留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-09-29 23:09:13"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                于是你就坑了么？                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№9</font>&nbsp;<font color=99CC00>☆☆☆</font>嘟嘟他姨</b><font color="99CC00">于</font>2011-09-29 23:09:13留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2013-08-30 19:12:09"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                楼主你真的回来了吗！为什么策瑜的灰这么悲伤啊！你就给伯符一个露面的机会，就让他挂了啊！那么快点让蒙瑜发展起来吧！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№11</font>&nbsp;<font color=99CC00>☆☆☆</font>浅慕瑜</b><font color="99CC00">于</font>2013-08-30 19:12:09留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2013-08-31 17:00:43"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                （二）二月十四 暴雨 <br>喧闹的中心街道，响起了几个小姑娘短暂而尖厉的惊叫。<br>吕蒙从小饭店的屋檐下跑出来，左右一扫，便迅速扑到绿化带旁边，和一个一同来帮忙的小青年一起，把撞得头破血流的司机和副驾上昏倒的乘客弄出来，拖离那辆前盖危险的冒着烟的肇事车辆。<br>“怎么开车的你们！脸红成这样还敢开！！”看着明显是喝高了的司机，吕蒙气急：“撞着人了！别想跑！！”<br>“不跑不跑……哎呦呦……”司机胡乱的捂着伤口，雨中一淋似乎清醒了许多，痛得话都说不清楚。昏倒的乘客因系着安全带，看起来没伤着太多，但一直没有醒，小青年手足无措了一阵，想扶又扶不起，干脆就那么蹲在那给乘客打着伞遮雨。<br>吕蒙见肇事司机跑掉的可能性已经很小，方才回头看向不远处。雨幕里，周瑜跪倒在那人身边，单手捂着对方脑后伤口，颤抖的拨着电话，他浑身早已被雨淋得透湿，水晕开的大团血迹在衣摆沾了许多处，在街道上流淌出了小片鲜红，淡淡的血水甚至在街旁人行道的路基下积聚成一道红线，转眼间又被雨水冲得不见踪影。<br>周瑜按了数下键盘，淋着雨的手机也只闪了一闪垂死的白光，便彻底黑屏。吕蒙一路小跑过来，便看见他目光猛地灰暗，便赶忙伸出一只手按住那只无用的机器。<br>“没事，我打过急救电话了。”吕蒙问：“他怎么样？”<br>“刚才我看见……我不知道。”周瑜侧了一下脸，似乎在驱赶着围绕在身边的雨水，声音暗哑：“不下雨，就什么事都没了。”<br>救护车的警笛由远而近，医护人员带着急救器材匆匆下车围住了伤者，周瑜被检查一番后便给挤到一旁，他沉默的看着医生给孙策止血、输氧、固定、上担架，仿佛在看一场不合时宜的、让人头晕目眩的荒诞剧，直到护士将担架推上车，方才反应过来往前赶了几步，却被告知，伤者太多，家属无法乘坐救护车。<br>“这位先生你看看打辆车跟着吧，等会还需要患者资料。”医生伸手打算关上车尾门。<br>“让我上去……”周瑜挥开医生的手：“让我上去！我得看着他……我得看着他！！”<br>“先生，请不要妨碍治疗！”戴着白口罩的医生无心纠缠这许多，直接拉上铁门，救护车开足警笛绝尘而去。<br><br>吕蒙眼看着救护车连同撞破头的肇事司机都一起拉走，却将唯一没受伤的周瑜撂在街上，方才想起自己那辆趴在街边的旧夏利，他三步并作两步冲去街边取车，把人推上去后一路风驰电掣追着救护车去了医院。<br>到地方后周瑜只说了一句谢谢，便急匆匆冲下了车跟着孙策的担架床走了，等吕蒙七拐八拐到住院部外坪停了车再找回来，早没了人影。吕蒙从医院一楼爬到六楼又从六楼下到一楼，方反应过来急诊室肯定在进门不远，问一下医院前台就行，这才拍着脑袋挤去人堆里问了前台护士，被告知病人去了顶楼的手术室。<br>果然，周瑜正在手术室外的排凳上坐着，衣衫还是湿淋淋的，身边多了个淡粉色T恤的小姑娘。<br>“周……周先生，情况如何了？”吕蒙迎上去问。<br>“五分钟前进了手术室。”周瑜答道：“方才多谢你。”<br>“啊……这没啥……”吕蒙摸摸脑袋。<br>两人不约而同的沉默下来，吕蒙站在排凳旁边，觉着说无话可说的气氛有点尴尬，还好这时旁边的小姑娘开口问：“周哥哥，这是……”<br>“小妹，这是、嗯……我朋友，姓吕，刚刚多得他载我来医院。”周瑜答道，又侧身和吕蒙介绍：“这是我小妹孙尚香。”话音刚落，旁边的小妹就带着鼻音软糯糯的来了一句：“吕叔叔好……”<br>叔叔……姑娘哟我比你“周哥哥”年纪都小哦我看起来这么老么……吕蒙尴尬的扯了扯嘴角，不知怎么答她，只好又站回旁边去了。周瑜看起来情况不好，嘴角绷紧，脸色苍白，紧盯着手术室的玻璃门，不说也不动，孙尚香不曾注意他，只悄悄的抹着眼泪。吕蒙这么陪着等了一会，越发觉着不自在起来，自己和里面那位非亲非故，不知为啥又直觉小姑娘不喜欢自己，这么陪着等，是不是……显得太闲得慌了……缺乏同情心来看热闹的感觉？哎呦……<br>“嗯……”吕蒙迟疑着问：“周先生，你没事了吧？”<br>周瑜过了半晌才反应过来，缓缓摇了摇头。<br>“那……”吕蒙刚打算说那我就先走了，不知怎的突然来了一句：“你湿成这样我拿两件衣服给你？”<br>“不用麻烦……”<br>“不麻烦不麻烦我送快递的车上有替换的工作服！”吕蒙噼里啪啦快速说完，一溜烟就往住院部停车坪那儿跑，脑子里还稀乱的想着这都是什么事儿啊手术室里那位不会有事吧呸呸呸一定没事我这是在干啥呢我……<br>跑到车边开了后门，后座上的工作服咸菜一样的摊成一陀，连本色都看不清，吕蒙顿时囧了，单身汉的工作服谁记得洗。<br>咬咬牙，扒掉身上的羽绒服换上那咸菜衣服，再翻了一下后备箱，发现数礼拜前放进去打算擦车用的新毛巾还没开封，也顺手操起来就走。<br><br>等他回到手术室外面，却只看见粉红衣服的孙尚香靠在一个护士胸口嚎啕大哭，周瑜不见了踪影。<br>等会，手术室的门是开的。<br>“怎么样了怎么样了？”他急忙问。<br>“请节哀。”护士回答：“我们已经尽力抢救……请节哀。”<br>“那个……小妹啊你周哥哥呢？”吕蒙硬着头皮问。<br>孙尚香扫了一眼他身上的工作服，又看看他手上拿的毛巾和羽绒衣，边哭边往走廊尽头一指。<br>吕蒙拎着东西往走廊尽头兜了一圈，没人；又跑回手术室门口，只有孙小妹一个；楼下，空荡荡。<br>不好，上天台了。<br><br>楼梯间里没窗，又因为是白天，感应灯也不亮，显得格外的黑，吕蒙运起送快递时的爬楼脚力，三步并作两步往上窜，走了小半层眼前便突然亮了起来。<br>不远处传来一声压抑的哽咽。<br>吕蒙站在台阶下，抬头看见通往天台的门大开着，他寻找的人背靠冰冷的铁门坐在医院的瓷砖地板上，门外天台，暴雨倾盆。<br>来的不是时候啊……吕蒙小心的往回退……轻轻的、轻轻的轻轻的……哎呦啊啊啊！！！嘭咚哐啷咕噜轰隆当当啷当……<br>顾前不顾后，三秒快速下楼。<br>吕蒙在地板上眼冒金星了好一会儿，有人递出一只手拉他起来，问道：“没事吧？”<br>“没事没事，踩空了滑下来的，没摔到……”他抬头一看，周瑜泛红的双目近在咫尺。<br>“这个……”到了这时，吕蒙竟无话能说了，只好犹豫着道：“唉……请节哀顺变。”<br>闻言，面前的人悲伤的笑了一下，说：“今天谢谢你。”便如失了魂般径自走开。<br><br>吕蒙远远看着走廊另一端，孙尚香扑到周瑜怀里，哭得站不住，护士小姐轻声安慰着失去亲人的家属，他看了看手中仍拿着的衣服和毛巾，感觉到一种深入骨髓的悲伤。<br>世事无常。                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№12</font>&nbsp;<font color=99CC00>☆☆☆</font>= =</b><font color="99CC00">于</font>2013-08-31 17:00:43留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2013-08-31 17:07:31"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                卧槽……卤煮回来了，撒花！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№13</font>&nbsp;<font color=99CC00>☆☆☆</font>唧唧</b><font color="99CC00">于</font>2013-08-31 17:07:31留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2013-08-31 19:17:04"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                这是怎么回事情啊！难道是我的沙发做错了吗！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№14</font>&nbsp;<font color=99CC00>☆☆☆</font>浅慕瑜</b><font color="99CC00">于</font>2013-08-31 19:17:04留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                    </table>
+                                        <div id="pager_bottom" align="center" style="padding:10px"></div>
+
+                                                                                <center>
+                                            <!-- bbsjjwxcnet_showmsg_foot -->
+                                            <div id='div-gpt-ad-1340894397500-0' style='width:728px; height:90px; overflow: hidden;'>
+                                                <!-- 
+                                                广告位：论坛回帖处上方728*90
+                                                -->
+                                                <script>CNZZ_SLOT_RENDER("147408");</script>
+                                            </div>
+                                        </center>
+                                        <p align=center locked:>回复此贴子</p>
+                                        <form action='reply.php?board=36&id=12879' method='post' enctype="multipart/form-data" name="form1" >
+                                            <input type="hidden" name="last_floor" value="14,0" />
+                                        <style type="text/css">
+    <!--  
+    .image1,.image2,.image6,.image7,.image8,.image9,.image10,.image12,.image13,.image14,.image15,.image16,.image17{background:url(notebook/bbsbigimage.gif) no-repeat 0 0;}
+    .image1{width:34px;height:32px;background-position:0 0;}
+    .image2{width:36px;height:32px;background-position:-34px 0;}
+    .image6{width:44px;height:39px;background-position:-70px 0;}
+    .image7{width:39px;height:38px;background-position:-114px 0;}
+    .image8{width:42px;height:37px;background-position:0 -32px;}
+    .image9{width:32px;height:32px;background-position:-42px -39px;}
+    .image10{width:32px;height:32px;background-position:-74px -39px;}
+    .image12{width:32px;height:32px;background-position:-106px -39px;}
+    .image13{width:32px;height:32px;background-position:0 -69px;}
+    .image14{width:32px;height:32px;background-position:-32px -71px;}
+    .image15{width:32px;height:32px;background-position:-64px -71px;}
+    .image16{width:32px;height:32px;background-position:-96px -71px;}
+    .image17{width:32px;height:32px;background-position:-128px -71px;}
+
+    --> 
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+    function getcookievalue(cookieHeader)
+    {
+        cookievalue = "";
+        if (document.cookie != "")
+        {
+            var cookieString = document.cookie;
+            var cookiearray = cookieString.split(";")
+            for (i = 0; i < cookiearray.length; i++)
+            {
+                if (cookiearray[i].indexOf(cookieHeader) > -1)
+                {
+                    cookievalue = cookiearray[i].split("=")[1]
+                    break;
+                }
+            }
+        }
+        return cookievalue;
+    }
+
+</SCRIPT> 
+<script language=javascript>//ctrl+回车提交
+            ie = (document.all)? true:false
+            if (ie) {
+        function ctlent(eventobject) {
+            if (event.ctrlKey && window.event.keyCode == 13) {
+                this.document.form1.submit();
+            }
+        }
+    }
+</script>
+
+<table width="760" border="0" align="center">
+    <tr>
+        <td align="center"><table width="640" border="4" align="center" cellpadding="4" cellspacing="0" bordercolor="#FFF9E1" bordercolorlight="#808000">
+                <tr> 
+                    <td width="18%">名字：</td>
+                    <td align="left"><input name="username" type="text" value="" size="20" maxlength="20"></td>
+                </tr>
+                <tr> 
+                                        <td bgcolor="#FFFFCC" valign=top>选择图案：</td>
+                    <td  bgcolor="#FFE7F7"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr> 
+                                <td><input type="radio" name="pic" value=1   checked> 
+                                    <div class="image1" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=2  > 
+                                    <div class="image2" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=6  > 
+                                    <div class="image6" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=7  > 
+                                    <div class="image7" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=8  > 
+                                    <div class="image8" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=9  > 
+                                    <div class="image9" style= "display: inline-block;" border="0"></div></td>
+                            </tr>
+                            <tr> 
+                                <td><input type="radio" name="pic" value=12  > 
+                                    <div class="image12" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=13  > 
+                                    <div class="image13" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=14  > 
+                                    <div class="image14" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=15  > 
+                                    <div class="image15" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=16  > 
+                                    <div class="image16" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=10  > 
+                                    <div class="image10" style= "display: inline-block;" border="0"></div></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                
+                <tr> 
+                    <td width="18%" valign="top">内容：</td>
+                    <td width="82%">
+                        <textarea name="body" rows="15" cols="60" onkeydown=ctlent()></textarea>
+                        <br> <font color="#FF0000" size="-1">（注意：一次最多可提交3万字左右，超出部分请贴在回贴里！）</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="18%" valign="top"><span id="authcode_name" style="display:none">验证码：</span></td>
+                    <td width="82%" align="left"></td>
+                </tr>
+                                <tr> 
+                    <td colspan="2"> <div align="center"> 
+                            <script>
+                                function makedonot()
+                                {
+                                    form1.button1.disabled = true;
+                                    form1.submit();
+                                }
+                            </script>
+                            <input name="button1" type="submit"  value="提交 [ Ctrl+Enter ]" onclick="makedonot()" >
+                        </div></td>
+                </tr>
+            </table></td>
+        <td align="center" valign="middle"></td>
+    </tr>
+</table>
+
+
+                                        </form>
+                                                                                <table width=790 border=0 align="center" bgcolor="#E8F3FF">
+                                            <tr>
+                                                <td>
+                                                    <a href="board.php@board=36&page=1" style="margin-left:5px;"><img src="img/jiantou.gif" alt="返回上层" title="返回上层" style="border:0px;" width="25px" height="20px"></a>
+                                                                                                        <a href="admin.php@board=36" target=_blank><font color="#E8F3FF">管理</font></a>
+                                                </td>
+                                                <td align=right><a href="board.php@board=36&page=1">返回本版块首页</a>←<a href="bindex.php">返回交流区首页</a>←<a href="default.htm" target="_blank">返回主页</a></td>
+                                            </tr>
+                                        </table>
+                                        <p>&nbsp;</p>
+                                        <center><font color=red size=-1>非法帖举报热线010-51667135，短信举报发15300139586(主)、13146571569(备)，欢迎网监部门直接致电通知删除非法帖</font></center>
+<center><font color=gray size=-2>Processed in 0.05 second(s)</font></center>
+<p style="text-align:center"><a href="../www.miibeian.gov.cn/default.htm" target="_blank" rel="nofollow">京ICP证080637号</a> <a href="../www.miibeian.gov.cn/default.htm" target="_blank" rel="nofollow">京ICP备12006214号-2</a>
+</p><table width="20%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr align="center">
+            <td colspan="3"></td>
+        </tr>
+        <tr align="center"><td>
+                <a href="../www.tj.cyberpolice.cn/infoCategoryListAction.do@act=init" rel="nofollow"><img height="51" width="41" border="0" rel="nofollow" src="img/police/070516001.gif"/></a>
+            </td><td>
+
+            </td><td>
+                <a href="../www.tj.cyberpolice.cn/infoCategoryListAction.do@act=init" rel="nofollow"><img height="51" width="42" border="0" rel="nofollow" src="img/police/070516003.gif"/></a>
+            </td></tr></tbody>
+</table>
+                                        </body>
+                                                                                </html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+            <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+        <style type="text/css">
+            <!--
+            a:link {
+                color: #0000FF;
+                text-decoration: none;
+            }
+            a:visited {
+                color: #0000FF;
+                text-decoration: none;
+            }
+            a:hover {
+                color: #FF0000;
+                text-decoration: none;
+            }
+            .read {
+                line-height: 30px;
+            }
+            -->
+        </style>
+        <script type="text/javascript" src="../ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+        <script>!window.jQuery&&document.write('<script src="scripts/jquery.js"><\/script>');</script>
+        <script type="text/javascript" src="scripts/trans.js"></script>
+        <!--
+          公用文件
+        -->
+        <script type='text/javascript' src='../js.adm.cnzz.net/js/abase.js'></script>
+        <!-- 
+        将此标记放入标头部分 
+        -->
+        <script type='text/javascript'>
+            var googletag = googletag||{};
+            googletag.cmd = googletag.cmd||[];
+            (function() {
+                var gads = document.createElement('script');
+                gads.async = true;
+                gads.type = 'text/javascript';
+                var useSSL = 'https:'==document.location.protocol;
+                gads.src = (useSSL ? 'https:' : 'http:')+
+                        '//www.googletagservices.com/tag/js/gpt.js';
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(gads, node);
+            })();
+        </script>
+
+        <script type='text/javascript'>
+            googletag.cmd.push(function() {
+                googletag.defineSlot('1011651/bbsjjwxcnet_showmsg_top', [728, 90], 'div-gpt-ad-1340894591102-0').addService(googletag.pubads());
+                googletag.defineSlot('1011651/bbsjjwxcnet_showmsg_foot', [728, 90], 'div-gpt-ad-1340894397500-0').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+        </script>
+
+
+
+        <!-- 标头部分的标记结束 -->
+                <script src="../w.cnzz.com/c.php@id=30012213" language="JavaScript"></script>    </head>
+        <body bgcolor="#FFE7F7" topmargin="0">
+        <center>
+            <!-- bbsjjwxcnet_showmsg_top -->
+            <div id='div-gpt-ad-1340894591102-0' style='width:728px; height:90px; overflow:hidden;'>
+                <!-- 广告位：论坛顶部通发-->
+                <script>CNZZ_SLOT_RENDER("256845");</script>
+            </div>
+        </center>
+                <script type = "text/javascript" src = "scripts/jquery.blockUI.pack.js"></script>
+        <style type="text/css">
+            <!--
+            .graypic {
+                filter: Gray;
+            }
+            .image1,.image2,.image6,.image7,.image8,.image9,.image10,.image12,.image13,.image14,.image15,.image16,.image17{background:url(notebook/bbsbigimage.gif) no-repeat 0 0;}
+            .image1{width:34px;height:32px;background-position:0 0;}
+            .image2{width:36px;height:32px;background-position:-34px 0;}
+            .image6{width:44px;height:39px;background-position:-70px 0;}
+            .image7{width:39px;height:38px;background-position:-114px 0;}
+            .image8{width:42px;height:37px;background-position:0 -32px;}
+            .image9{width:32px;height:32px;background-position:-42px -39px;}
+            .image10{width:32px;height:32px;background-position:-74px -39px;}
+            .image12{width:32px;height:32px;background-position:-106px -39px;}
+            .image13{width:32px;height:32px;background-position:0 -69px;}
+            .image14{width:32px;height:32px;background-position:-32px -71px;}
+            .image15{width:32px;height:32px;background-position:-64px -71px;}
+            .image16{width:32px;height:32px;background-position:-96px -71px;}
+            .image17{width:32px;height:32px;background-position:-128px -71px;}
+
+            -->
+        </style>
+                <script type="text/javascript">
+                    // --- 提示窗口
+                    var alert_blockUI = function(message) {
+                        $.blockUI('<div align="center" style="font-size: 12px;"><div style="float:right"><img src="../static.jjwxc.net/images/close.gif" width="12" height="12" style="cursor:pointer" onClick="$.unblockUI()"/></div><b>'+message+'</b><br><br><br><br><input type="button" value="确 定" onClick="$.unblockUI()"/></div>', {
+                            width: '330px',
+                            height: '100px',
+                            cursor: 'default'
+                        });
+                    }
+                    var topboard_start = function() {
+                        var board = 36;
+                        var topic = 5192;
+                        var msg = '晋江论坛→网友交流区→同人文库';
+                        var channel = $('#channel').val();
+                        var remarks = $('#remarks').val();
+                        var subhead = $('#subhead').val();
+                        var cover = $('#cover').val();
+                        var sure = $('#sure').val();
+                        var message = '';
+                        if (remarks.length==0) {
+                            message += '推荐语';
+                        }
+                        if (channel=='0') {
+                            if (cover.length==0||!/^http:\/\/(.*)(jpg|gif|png)$/.test(cover)) {
+                                message += '，正确的图片地址';
+                            }
+                            if (subhead.length==0||subhead.length>100) {
+                                message += '，副标题不能为空或者大于50个字';
+                            }
+                        }
+                        if (message.length==0) {
+                            var blockBox = $('.blockMsg').html();
+                            var channel = $('#channel').val();
+                            blockBox = blockBox.replace(' selected="selected"', '');
+                            blockBox = blockBox.replace('<option value="'+channel+'">', '<option value="'+channel+'" selected="selected">');
+                            $.blockUI('<img src="../static.jjwxc.net/images/loading.gif">  <strong>请稍候...</strong>');
+                            $.post('guanli/topboard.php', {action: 'top', board: board, topic: topic, channel: channel, remarks: remarks, cover: cover, subhead: subhead, msg: msg, sure: sure, r: Math.random()}, function(json) {
+                                if (json.status==200) {
+                                    alert_blockUI(json.message);
+                                } else if (json.status==100) {
+                                    $.blockUI(blockBox, {left: ($(window).width()-300)/2+'px', top: ($(window).height()-200)/2+'px', width: '500px', height: '300px', cursor: 'default', padding: '0', border: '1px solid #565656'});
+                                    $('.import_message').html(json.message);
+                                    $('.topboard_submit').html('<input type="button" value="　确　定　" onclick="$(\'#sure\').val(1);topboard_start();" />　　　　<input type="button" value="　取　消　" onclick="$.unblockUI();" />')
+                                } else {
+                                    alert_blockUI(json.message);
+                                }
+                            }, 'json');
+                        } else {
+                            message = '请填写'+message;
+                            $('.import_message').html(message);
+                        }
+                    }
+                    $(function() {
+                        $('#topboard').bind('click', function() {
+                            var remarks = '[文库][三国][瑜亮]如愿以偿';
+                            var html = '';
+                            html += '<div style="font-size: 12px;">';
+                            html += '<input type="hidden" id="sure" name="sure" value="0"/>';
+                            html += '<div style="padding: 0 10px 0 10px;;background: none repeat scroll 0 0 #53B61B; height: 30px; border-bottom: 1px solid #565656;"><div style="float:right; padding: 5px;"><img src="../static.jjwxc.net/images/close.gif" width="12" height="12" style="cursor:pointer" onClick="$.unblockUI();"/></div>';
+                            html += '<div align="left" style="font-size: 14px; color: #FFFFFF; ; font-weight: bold; line-height: 30px;">推荐到首页</div></div>';
+                            html += '<div align="left" style="height: 300px; padding: 10px; line-height: 30px;">'
+                            html += '<div style="float: left; line-height: 48px;"><b>推荐到首页：</b></div>';
+                            html += '<div style="float: left; line-height: 48px; padding-top: 13px;"><select name="channel" id="channel"><option value="0">首页图推</option><option value="1">网站活动</option><option value="2">热贴推荐</option><option value="3">八卦娱乐</option><option value="4">创作心得</option><option value="5">情感天地</option><option value="6">树洞心事</option><option value="8">美图荟萃</option><option value="9">声色乐园</option></select></div>';
+                            html += '<div style="clear: both;">';
+                            html += '请填写推荐语：<br/><input id="remarks" type="text" style="border: 1px solid black; width: 400px; height: 20px;" value="'+remarks+'" name="remarks" size="33"><br>';
+                            html += '<span class="cover_show">请填写副标题：<br/><input id="subhead" type="text" style="border: 1px solid black; width: 400px; height: 20px;" name="cover" size="20"><br></span>';
+                            html += '<span class="cover_show">首页图推请填写图片地址：<br/><input id="cover" type="text" style="border: 1px solid black; width: 400px; height: 20px;" name="cover" size="20"><br></span>'
+                            html += '<div class="line_show" style="display: none; height: 54px;">&nbsp;</div>';
+                            html += '<div class="line_show" style="display: none; height: 54px;">&nbsp;</div>';
+                            html += '<div class="import_message" style="color: red; height: 20px; line-height: 20px;"></div>';
+                            html += '<div style="height: 30px;"><div class="topboard_submit"><input type="button" value="　确　定　" onclick="topboard_start()" /></div>';
+                            html += '<div class="import_loading" style="display: none; color: red;"><img alt="导入中" src="../static.jjwxc.net/images/loading_2010.gif"> 导入名单需要一会时间，请耐心等待</div></div>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                            $.blockUI(html, {left: ($(window).width()-300)/2+'px', top: ($(window).height()-200)/2+'px', width: '500px', height: '300px', cursor: 'default', padding: '0', border: '1px solid #565656'});
+                            $('#channel').bind('change', function() {
+                                var channel = $(this).val();
+                                if (channel=='0') {
+                                    $('.cover_show').show();
+                                    $('.line_show').hide();
+                                } else {
+                                    $('.cover_show').hide();
+                                    $('.line_show').show();
+                                }
+                            })
+                        })
+                    })
+        </script>
+                                                <table width="760" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td><a target='_blank' href='default.htm'>晋江论坛</a>→<a target='_blank' href='bindex.php' >网友交流区</a>→<a target='_blank' href=board.php@board=36&page=653>同人文库</a>                                                </td>
+                                            </tr>
+                                        </table>
+                                                                                <title>[三国][瑜亮]如愿以偿 —— 晋江文学城网友交流区</title>
+                                        <table width="760"  border="0" align="center" cellspacing="0" style="table-layout:fixed;word-wrap:break-word;">
+                                            <tr>
+                                                <SCRIPT LANGUAGE="JavaScript">
+                                                    <!--
+                                                    var locked;
+                                                    locked =0;
+//-->
+                                                </SCRIPT>
+                                                <td bgcolor="#E8F3FF"><div style="float: left;">
+                                                                                                                主题：[三国][瑜亮]如愿以偿 <font color="#999999" size="-1">[11,1913]</font></div>
+                                                                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td valign="bottom" width="300"><div class="image1"   style= "display: inline-block;"></div></td>
+                                                            <td><a name='p0'></a><div align="right"><img src="img/heart.gif" width="10" height="9">
+                                                                                                                                                <a href=" ../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">掌上晋江——博朗电子书</font></a>
+                                                                </div></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="0" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read"><div id="topic">（现代亦舒腔） <br><br> <br>我们整个公司包了一大支游艇在外海上开庆功会，80年代迪斯科舞曲充斥甲板，夕阳正向海面坠去，漫天都是金光。 <br>自金星公司手中抢得大客户今年已是第三次，刘关张事务所从芝麻大一间公关公司战至今日，终于和宇宙机构，金星公司三分天下。想到打开睡袋便在办公桌下地毯上盹着的那些日子，便是再买整打粉红色汽酒请大家喝也值得。 <br>子龙忽然接起手机，“噫”一声，微微变了颜色，接着便朝我急急走来，“孔先生。”老好子龙，过了这么多年，依然时时依足规矩，不肯叫我一声阿明。 <br>“金星公司周公瑾心脏病突发，三分钟前宣告不治。” <br>“什么？”周围忽然很静，远处年轻同事将整杯酒和冰块向人头上浇下，仿佛默片电影慢动作版。 <br>“我表妹是玛嘉烈医院急救科医生。” <br>我听得自己的声音轻松愉快地说：“子龙，地产公司明日提交的那个CASE，把报价再做高15个巴仙，没有周公瑾，不怕别人和我们争。” <br>子龙轻轻拍我肩膀，一双黑眼睛深深看住我：“孔先生。” <br>我又看着自己大笑一声，穿着白衬衫卡其布裤一跃而下跳进海中游泳，同事们不明就里，甲板上有人鼓掌有人呼哨。 <br>这就算如愿以偿了吧？我茫然地想。 <br>海水微凉，天地间只剩一片金光。 <br><br>我知道周公瑾时尚在大学夜间部苦读。白天在大哥的修车场帮忙，8小时总是黑漆漆油渍，只在更衣室柜子里有一身半新干净衣裤每天换了去上课，在教室里总觉得人人闻得到自己身上汽油味，惶恐不安。 <br>在地铁上电视里看到一帧广告，先是一个个黑白片段，有消防队员自大火救人，“他们救你于水火”，有小警察在偏僻街道上巡逻，“他们保你安全无虞”，有教师在黑板上写1+1=2，“他们打开你人生新的大门”，有医生自手术室中笑眯眯走出来报平安，“他们拯救你的生命”，然后所有画面隐黑，打出一行白字“他们都是别人的孩子。”是儿童基金会呼吁捐款的公益广告。身边时时有女乘客看完低下头去，泪盈于睫。 <br>我非常感动，后来看到那广告拿了那一年的金奖，创意正是周公瑾，金星公司。 <br>从此记住这个名字。 <br>新闻上写他是城中青年才俊，只比我年长一岁，但却是八卦版报道。 <br>周郎名字时时与绯闻挂钩，不是名媛就是新晋亚洲小姐，原来他家代代服务于百年老店金星公司，所以周少爷一出场就是重臣。 <br>哈，含着金汤匙出生，果然生活比平凡人精彩些。若有才气，更加不同。 <br>何况周郎身高6尺2寸，顾盼神飞，一抿水色薄唇时时微带笑意，即便我是同性，也要拍案赞一声“好皮相！” <br><br>所以听闻他与小乔婚讯，我毫不惊讶。 <br>那一日我与子龙刚刚拿到人生第一个广告奖，却因为一份凌晨截稿的标书忙了超过十六个小时，直到夜里一点多才有空闲走下写字楼吃一碗云吞面。 <br>刘关张事务所当时只在一座老旧写字楼租半层办公室，地段偏僻龙蛇混杂，常有不务正业年轻人深夜在楼下械斗，早晨来上班人行道上尚有血迹。 <br>子龙到底少年心性，去报摊买了报纸，摊开在餐桌上指给我看，“孔先生，报上有我们名字！” <br>得奖新闻在角落里不过豆腐干大，头条却是“金牌王老五十二克拉粉红钻迎娶城市之花！”大照片上是夏威夷海滩，白沙椰树，一对璧人正深吻，头上彩带飘飞。 <br>我这边只有男子猥琐拉客声自街口传来：“美丽按摩，温柔乡中！”面前热气腾腾云吞面一时竟食不下咽。 <br>子龙还在研究报纸：“小乔父亲是城中大学校董，爱女结婚，大方赠出旧金山与伦敦顶级别墅，以做嫁妆。啊……这周郎竟是我们同行。” <br>“早晚有一天，我们能赢过他，子龙，我们必会得偿所愿。”我握紧手中粗糙竹筷，太过用力，刺的手心微痛。 <br>子龙只是微笑，伸出手来给我看。“孔先生，可见过电脑工程师有如此粗壮手指？我家只有寡母，彼时在伦敦大学攻读，白天上课，自晚八时到凌晨一时，我需在建筑工地当工人赚取学费与生活费，回去还要做功课写报告，生不如死。”他手心从此有褪不掉薄茧。“如今我最大愿望不过每天睡足四小时。各人际遇不同，孔先生你又何必太认真。” <br>不，我最讨厌这些世家子弟，明明悠哉游哉就可以终老一世，又何必和我们厮杀？ <br>他周公瑾，从此成为我孔明最大假想敌。&nbsp;&nbsp;<br> <br>№0 ☆☆☆洗脑吴于2008-07-27 17:20:50留言☆☆☆　 <br></div>                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td><div align="left"><font color=99CC00 size="-1">№0&nbsp;</font><font color=99CC00>☆☆☆</font>洗脑吴</b><font color="99CC00">于</font>2008-08-01 12:30:46留言<font color=99CC00>☆☆☆　</font></div></td>
+                                            </tr>
+                                            <tr>
+                                                <td height="1"><div align="right">
+                                                                                                            </div></td>
+                                            </tr>
+                                        </table>
+                                        <div align="center"><hr width="760" color="#99CC00" size="1"></div>
+                                        <table width="760" align="center" cellspacing="0">
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2008-08-01 12:31:43"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                强人啊，以为亦舒师太现身！抢个沙发膜拜一下&nbsp;&nbsp; <br><br>№1 ☆☆☆膜拜一下于2008-07-27 17:18:04留言☆☆☆　&nbsp;&nbsp;<br /><br />№1 ☆☆☆扇于2008-07-27 17:21:33留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>LZ标题格式有误，代为重发。 <br><br>请阅读版规后发帖。&nbsp;&nbsp;<br> <br>№2 ☆☆☆ 扇于2008-07-27 17:22:17留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>初来乍到，多有不知 <br>不好意思，有劳版主 <br>多谢多谢XD&nbsp;&nbsp;<br> <br>№3 ☆☆☆洗脑吴于2008-07-27 17:25:04留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>强人啊，以为亦舒师太现身！抢个沙发膜拜一下&nbsp;&nbsp; <br><br>№1 ☆☆☆膜拜一下于2008-07-27 17:18:04留言☆☆☆　&nbsp;&nbsp;<br /><br />№1 ☆☆☆扇于2008-07-27 17:21:33留言☆☆☆　&nbsp;&nbsp;<br /><br />倒，眼花以为扇版主抢沙发 T T <br><br>铜牌1楼的~~拉凳子坐&nbsp;&nbsp;<br> <br>№4 ☆☆☆昏于2008-07-27 17:35:21留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>没想到也有化敌为友的那一天。 <br>金星公司在城中心金融区坐拥独栋大厦，推门而入，满目皆是巨大绿色盆栽，挑空中央大厅里人工溪水潺潺，金红两色锦鲤悠然自得游于其中。 <br>从专属电梯上到顶层，连秘书小姐都身穿深色当季香奈儿套装，听我们报上名来眼睛都不抬一下：“孙先生只有15分钟，敬请长话短说，万勿浪费彼此时间。” <br>我和子龙都背双肩书包，看起来简直像求职面试大学生，也怪不得人家轻看。 <br>进得办公室，孙老大在巨大办公桌后端坐，却有一个高挑身影站在落地窗前抱着双臂凝视窗外海景，听见响动转过头来。 <br>“孔先生，赵先生，久仰二位，我是周公瑾。” <br>他真人又比照片好看一百倍。不知刚从哪里度假回来，皮肤晒成金棕，牙齿雪白闪亮，一直都有笑意。 <br>“久仰。”我开门见山，自大书包中拿出厚厚资料夹，开门见山：“这次通用公司新款小型车推广项目，恳请金星公司考虑与刘关张事务所合作。” <br>“为何？”孙仲谋只说两字。 <br>“我们素知通用公司和金星素有交情，原轮不到刘关张这等小公司置喙。但宇宙机构自从登陆本市以来，相信金星公司也并非没有压力，特别是在汽车领域，如此次再不能争取到通用公司项目，”我特别在“再”字上加重力道，“一传十十传百，金星未来堪虞。” <br>宇宙机构是美加最大的公关与广告公司，两年前来到本市开拓疆土，他们有极现代设施，又有一套精准成本控制流程，已从金星手中抢得不少客户，特别是丰田与宝马两大客户倒戈，令老金星元气大伤，此次通用项目，金星已不容有失。 <br>“刘关张虽小，这几年却在广告界颇有些名气，特别是互联网广告方面，我们有最完备受众调查及技术创意。”看到周公瑾，我连一句“敝公司”之类的谦称都不肯说出口，只是将资料夹递上，又指指子龙，“子龙是城中最好的3D特效工程师，如此次刘关张能在广告创意与制作方面与金星合作，再加上金星的媒体资源与推广手段，相信能事半功倍，无往不利。” <br>“孔先生也未免太小看金星。”周公瑾一跃坐上他家老大办公桌，手撑桌面，头微微扬起，向下俯视我，居然有三分孩子气。在老大面前居然如此放肆，全不顾君臣之礼，可见平日在公司中说话必有分量，孙仲谋拉他参与听我们会面，我手中胜算又多几分。 <br>“当然金星也不见得非要与我们合作，也不妨静待宇宙机构羽翼丰满，对刘关张小小公司来说，倒也是好戏一场。”我抬眼看回去，并不退让。 <br>“你和子龙在刘关张拿多少薪水，金星加一倍，不如跳槽过来，大家不是能更好地携手同心？”周公瑾摇身一变当了说客，笑嘻嘻的。他也不过是人臣，居然随便就开大价钱，如此越矩，真讨厌。 <br>我沉默不语。 <br>“两倍如何？”孙仲谋放下资料夹，这回是四个字。 <br>“与刘关张分成，七三开即可，便宜又大碗，请孙先生考虑。”我看一看表。“十五分钟已过，不打扰二位商讨国家大事，我们告辞了。” <br>孙仲谋办公室冷气多足，但走出来我才发现，连西装下衬衫都汗湿了。 <br><br>子龙出得大楼，便去花店买一打硕大白色菊花。“我迟两个小时回公司，今日是亡母忌辰。” <br>“啊，我同你走这一趟。” <br>子龙父母均在一僻静小公墓，背山面海，墓碑毗连。 <br>他放下鲜花，以清水濯洗墓碑，半晌才说：“我到刘关张工作第三天，母亲忽然去世，老板来家里探望，递一张10万块支票给我，说‘借你的，先去给老人买块墓地。’我只是个普通新员工，尚未对公司有半毫贡献。后来我用两年时间才还完这笔钱。涌泉之恩，没齿难忘。” <br>我想起若干年前的夏夜，我从夜间部下课，便看见一发福中年人在教室外徘徊，看到我便走过来，说：“在下是刘关张事务所总经理刘玄德，看到孔先生的毕业作业，深为叹服，可否请孔先生考虑屈就敝公司？”他穿质料极其普通条纹T恤，下摆略有污渍，夜间部走廊中并没有冷气，他不知等多久，面孔上尽是油光，已是我叔伯年纪，却毕恭毕敬叫我孔先生， <br>我不发一言抬脚就走。 <br>没想到他又继续等我两个晚上，终于我被他磨不过，答应去他公司看看，出得门来，他居然开一辆半旧小货车。“公司给客户制作大背板易拉宝，常常需要送货上门，有个货车，彼此方便。”老刘毫不羞赧，落落大方解释，这么务实，我反而有些好感。 <br>那时刘关张还在郊区租一改建库房，到处堆满设计稿与图纸，我正拿起细看，忽然有人敲门。 <br>是满脸皱纹老妇，拿着一帧小小照片，边说边哭，原来是爱犬走失，要即刻打印一百张寻狗启事。 <br>时间已过十一点，办公室里除了我与老刘，半个工人也无，更何况我们又并不是打印社。但老刘却一手接过照片，温言说：“阿姨，等我十分钟。”又递出手帕给老妇拭泪。 <br>老刘随手递给我一份打印文本，“请孔先生先过目下合同，我去去就来。”于是便开动电脑与扫描仪，自己做起寻狗启事来。 <br>我扫一遍合同，给我的价码居然比一线大公司还高一成。那边老刘已经印好启事，正一张一张裁开，还和老妇闲聊：“阿姨，狗狗都认得家的，这一区虽然偏僻，但爱狗人士众多，相信你家庄尼不会有事。” <br>我走上去帮忙，片刻搞定，虽然动用专业设备，老刘仍然只按打印社价钱收钱，又和我说，“大家都是邻居，我们小公司，能帮忙帮一把，让孔先生见笑。” <br>看我拿着合同草稿，又说：“若孔先生肯屈就，敝公司一切资源，听候调遣。” <br>“好。请祝我前途似锦。” <br>我就这样在合同上签下名字，不出三年，已从大哥修车厂楼上搬出，在城中中产社区买下一套一房一厅，老刘言出必行，对我着实不薄。 <br>两倍薪水？金星又有什么了不起？ <br>我便将花瓶中白菊摆一摆正，对子龙说：“是，刘先生是忠厚人，值得我们忠心。”江湖这么大，能衔草结环的，又有几人？ <br>手提电话响，是周公瑾。 <br>“二八如何？孔先生也说，刘关张只是小公司。” <br>“不，三七。”漫天要价，就地还钱，一开始就被人呼来喝去，焉有将来。 <br>那边沉吟一下。“好，请孔先生有闲时来草签合同。” <br>我偷偷与子龙伸一下大拇指，自周公瑾手上，我终于胜了第一仗。但这一笔生意，已足够刘关张整个公司混过整年。 <br>我有时会想，人这一生，不过是大大小小愿望串成珠链，完成一个，还有下一个，子子孙孙无穷匮也，看到报纸上女明星说好的人生就是“一栋海滩上白色洋房，几只大狗”之类言辞，常常忍不住笑出来，什么是好的人生？对我来说，能一直得偿所愿才是好的人生，所以势必要狠狠活下去，挡路者血肉横飞？进化论，也不过就是这么一回事。&nbsp;&nbsp;<br> <br>№5 ☆☆☆洗脑吴于2008-07-27 20:16:00留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>被那个现代亦舒腔小雷了一下，好奇点进来一看，意外大人文笔居然很好！难得一篇感觉不别扭的架空文！大人加油！&nbsp;&nbsp;<br> <br>№6 ☆☆☆- -152于2008-07-27 21:35:20留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>虽然很久没有看 <br><br>但看得还是很有感觉 <br><br>楼主加油&nbsp;&nbsp;<br> <br>№7 ☆☆☆好久没有看亦舒于2008-07-27 22:48:31留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>文笔很好，等下文&nbsp;&nbsp;<br> <br>№8 ☆☆☆bb于2008-07-29 16:00:04留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>是个大坑啊&nbsp;&nbsp;<br> <br>№9 ☆☆☆青梅于2008-07-29 16:19:34留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>有新意…………楼主加油！&nbsp;&nbsp;<br> <br>№10 ☆☆☆/口\\\\\\\\\\\\\\\\\于2008-07-30 20:45:41留言☆☆☆　&nbsp;&nbsp; <br><br>--------------------------------------------------------------------------------<br> <br> 〖掌上晋江——博朗电子书〗&nbsp;&nbsp;<br> <br>行业俺喜欢,亮亮更喜欢,经常更新最喜欢&nbsp;&nbsp;<br> <br>№11 ☆☆☆hang于2008-07-30 21:42:03留言☆☆☆　&nbsp;&nbsp;<br>                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№1</font>&nbsp;<font color=99CC00>☆☆☆</font><font color=#FF0099><b> 欠</font></b><font color="99CC00">于</font>2008-08-01 12:31:43留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2008-08-01 12:32:48"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                LZ标题格式有误，代为重发。<br><br>PS，扇子……我OTZ了，我刚看见。                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№2</font>&nbsp;<font color=99CC00>☆☆☆</font><font color=#FF0099><b> 欠</font></b><font color="99CC00">于</font>2008-08-01 12:32:48留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2008-08-01 18:12:04"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                我看到刘关张公司一口口水喷到了电脑上                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№3</font>&nbsp;<font color=99CC00>☆☆☆</font>liliaqua</b><font color="99CC00">于</font>2008-08-01 18:12:04留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2008-08-02 19:09:09"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                太萌了！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№4</font>&nbsp;<font color=99CC00>☆☆☆</font>二兔</b><font color="99CC00">于</font>2008-08-02 19:09:09留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2008-08-03 17:45:12"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                好萌！<br>lz文笔真赞，且很有新意，期待下文 滚动                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№5</font>&nbsp;<font color=99CC00>☆☆☆</font>蓑衣莲</b><font color="99CC00">于</font>2008-08-03 17:45:12留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2009-06-07 18:27:39"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                没了？？？                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№6</font>&nbsp;<font color=99CC00>☆☆☆</font>道天凉</b><font color="99CC00">于</font>2009-06-07 18:27:39留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image12"   style= "display: inline-block;"></div><a name="2009-06-25 22:15:13"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                今晚撞到什么了啊，一连掉进六个坑……= =                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№7</font>&nbsp;<font color=99CC00>☆☆☆</font>今天是红杏</b><font color="99CC00">于</font>2009-06-25 22:15:13留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2009-06-25 22:21:28"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                LS运气真好 噗                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№8</font>&nbsp;<font color=99CC00>☆☆☆</font>一一</b><font color="99CC00">于</font>2009-06-25 22:21:28留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-10-12 09:21:12"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                内牛满面，很难看到的架空啊                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№9</font>&nbsp;<font color=99CC00>☆☆☆</font>姬</b><font color="99CC00">于</font>2011-10-12 09:21:12留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2011-10-20 20:18:18"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/24" target="_blank"><font color=#FF99FF size="-1">〖晋江币支付-豆浆机,酸奶机,小家电〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                我这是掉进了第几个坑了？？？？暴走、、、                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№10</font>&nbsp;<font color=99CC00>☆☆☆</font>lyv5</b><font color="99CC00">于</font>2011-10-20 20:18:18留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                        <tr>
+                                                <td colspan="2">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="300" ><div class="image1"   style= "display: inline-block;"></div><a name="2012-01-13 19:32:00"></a>                                                                                                                            </td>
+                                                            <td><div align="right"><img src="img/heart.gif" width="10" height="9"><a href="../www.jjwxc.cn/book_class/index/aid/36/nid/68" target="_blank"><font color=#FF99FF size="-1">〖掌上晋江——博朗电子书〗</font></a> </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <table width="760" border="0" cellpadding="0" cellspacing="15" style="table-layout:fixed;word-wrap:break-word;">
+                                                        <tr>
+                                                            <td class="read">
+                                                                天哪！又是一个坑！                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><font color=99CC00 size="-1">№11</font>&nbsp;<font color=99CC00>☆☆☆</font>song</b><font color="99CC00">于</font>2012-01-13 19:32:00留言<font color=99CC00>☆☆☆　</font>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"><div align="center"><hr width=100% color=#99CC00 size=1></div></td>
+                                            </tr>
+                                                                                    </table>
+                                        <div id="pager_bottom" align="center" style="padding:10px"></div>
+
+                                                                                <center>
+                                            <!-- bbsjjwxcnet_showmsg_foot -->
+                                            <div id='div-gpt-ad-1340894397500-0' style='width:728px; height:90px; overflow: hidden;'>
+                                                <!-- 
+                                                广告位：论坛回帖处上方728*90
+                                                -->
+                                                <script>CNZZ_SLOT_RENDER("147408");</script>
+                                            </div>
+                                        </center>
+                                        <p align=center locked:>回复此贴子</p>
+                                        <form action='reply.php?board=36&id=5192' method='post' enctype="multipart/form-data" name="form1" >
+                                            <input type="hidden" name="last_floor" value="11,0" />
+                                        <style type="text/css">
+    <!--  
+    .image1,.image2,.image6,.image7,.image8,.image9,.image10,.image12,.image13,.image14,.image15,.image16,.image17{background:url(notebook/bbsbigimage.gif) no-repeat 0 0;}
+    .image1{width:34px;height:32px;background-position:0 0;}
+    .image2{width:36px;height:32px;background-position:-34px 0;}
+    .image6{width:44px;height:39px;background-position:-70px 0;}
+    .image7{width:39px;height:38px;background-position:-114px 0;}
+    .image8{width:42px;height:37px;background-position:0 -32px;}
+    .image9{width:32px;height:32px;background-position:-42px -39px;}
+    .image10{width:32px;height:32px;background-position:-74px -39px;}
+    .image12{width:32px;height:32px;background-position:-106px -39px;}
+    .image13{width:32px;height:32px;background-position:0 -69px;}
+    .image14{width:32px;height:32px;background-position:-32px -71px;}
+    .image15{width:32px;height:32px;background-position:-64px -71px;}
+    .image16{width:32px;height:32px;background-position:-96px -71px;}
+    .image17{width:32px;height:32px;background-position:-128px -71px;}
+
+    --> 
+</style>
+<SCRIPT LANGUAGE="JavaScript">
+    function getcookievalue(cookieHeader)
+    {
+        cookievalue = "";
+        if (document.cookie != "")
+        {
+            var cookieString = document.cookie;
+            var cookiearray = cookieString.split(";")
+            for (i = 0; i < cookiearray.length; i++)
+            {
+                if (cookiearray[i].indexOf(cookieHeader) > -1)
+                {
+                    cookievalue = cookiearray[i].split("=")[1]
+                    break;
+                }
+            }
+        }
+        return cookievalue;
+    }
+
+</SCRIPT> 
+<script language=javascript>//ctrl+回车提交
+            ie = (document.all)? true:false
+            if (ie) {
+        function ctlent(eventobject) {
+            if (event.ctrlKey && window.event.keyCode == 13) {
+                this.document.form1.submit();
+            }
+        }
+    }
+</script>
+
+<table width="760" border="0" align="center">
+    <tr>
+        <td align="center"><table width="640" border="4" align="center" cellpadding="4" cellspacing="0" bordercolor="#FFF9E1" bordercolorlight="#808000">
+                <tr> 
+                    <td width="18%">名字：</td>
+                    <td align="left"><input name="username" type="text" value="" size="20" maxlength="20"></td>
+                </tr>
+                <tr> 
+                                        <td bgcolor="#FFFFCC" valign=top>选择图案：</td>
+                    <td  bgcolor="#FFE7F7"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr> 
+                                <td><input type="radio" name="pic" value=1   checked> 
+                                    <div class="image1" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=2  > 
+                                    <div class="image2" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=6  > 
+                                    <div class="image6" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=7  > 
+                                    <div class="image7" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=8  > 
+                                    <div class="image8" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=9  > 
+                                    <div class="image9" style= "display: inline-block;" border="0"></div></td>
+                            </tr>
+                            <tr> 
+                                <td><input type="radio" name="pic" value=12  > 
+                                    <div class="image12" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=13  > 
+                                    <div class="image13" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=14  > 
+                                    <div class="image14" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=15  > 
+                                    <div class="image15" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=16  > 
+                                    <div class="image16" style= "display: inline-block;" border="0"></div></td>
+                                <td><input type="radio" name="pic" value=10  > 
+                                    <div class="image10" style= "display: inline-block;" border="0"></div></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                
+                <tr> 
+                    <td width="18%" valign="top">内容：</td>
+                    <td width="82%">
+                        <textarea name="body" rows="15" cols="60" onkeydown=ctlent()></textarea>
+                        <br> <font color="#FF0000" size="-1">（注意：一次最多可提交3万字左右，超出部分请贴在回贴里！）</font>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="18%" valign="top"><span id="authcode_name" style="display:none">验证码：</span></td>
+                    <td width="82%" align="left"></td>
+                </tr>
+                                <tr> 
+                    <td colspan="2"> <div align="center"> 
+                            <script>
+                                function makedonot()
+                                {
+                                    form1.button1.disabled = true;
+                                    form1.submit();
+                                }
+                            </script>
+                            <input name="button1" type="submit"  value="提交 [ Ctrl+Enter ]" onclick="makedonot()" >
+                        </div></td>
+                </tr>
+            </table></td>
+        <td align="center" valign="middle"></td>
+    </tr>
+</table>
+
+
+                                        </form>
+                                                                                <table width=790 border=0 align="center" bgcolor="#E8F3FF">
+                                            <tr>
+                                                <td>
+                                                    <a href="board.php@board=36&page=1" style="margin-left:5px;"><img src="img/jiantou.gif" alt="返回上层" title="返回上层" style="border:0px;" width="25px" height="20px"></a>
+                                                                                                        <a href="admin.php@board=36" target=_blank><font color="#E8F3FF">管理</font></a>
+                                                </td>
+                                                <td align=right><a href="board.php@board=36&page=1">返回本版块首页</a>←<a href="bindex.php">返回交流区首页</a>←<a href="default.htm" target="_blank">返回主页</a></td>
+                                            </tr>
+                                        </table>
+                                        <p>&nbsp;</p>
+                                        <center><font color=red size=-1>非法帖举报热线010-51667135，短信举报发15300139586(主)、13146571569(备)，欢迎网监部门直接致电通知删除非法帖</font></center>
+<center><font color=gray size=-2>Processed in 0.04 second(s)</font></center>
+<p style="text-align:center"><a href="../www.miibeian.gov.cn/default.htm" target="_blank" rel="nofollow">京ICP证080637号</a> <a href="../www.miibeian.gov.cn/default.htm" target="_blank" rel="nofollow">京ICP备12006214号-2</a>
+</p><table width="20%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tbody>
+        <tr align="center">
+            <td colspan="3"></td>
+        </tr>
+        <tr align="center"><td>
+                <a href="../www.tj.cyberpolice.cn/infoCategoryListAction.do@act=init" rel="nofollow"><img height="51" width="41" border="0" rel="nofollow" src="img/police/070516001.gif"/></a>
+            </td><td>
+
+            </td><td>
+                <a href="../www.tj.cyberpolice.cn/infoCategoryListAction.do@act=init" rel="nofollow"><img height="51" width="42" border="0" rel="nofollow" src="img/police/070516003.gif"/></a>
+            </td></tr></tbody>
+</table>
+                                        </body>
+                                                                                </html>
