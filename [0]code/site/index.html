@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>瑜相关文包资料检索</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="检索条件">
+        <div class="brand-block">
+          <div class="seal" aria-hidden="true">瑜</div>
+          <div>
+            <h1>文包资料检索</h1>
+            <p id="summary">正在连接 GitHub 仓库...</p>
+          </div>
+        </div>
+
+        <label class="field search-field">
+          <span>模糊查询</span>
+          <div class="control-wrap">
+            <input id="queryInput" type="text" autocomplete="off" placeholder="标题 / 作者 / 标签 / 路径">
+            <button class="field-clear" type="button" data-clear="queryInput" title="清除" aria-label="清除模糊查询">×</button>
+          </div>
+        </label>
+
+        <div class="filter-grid">
+          <label class="field suggest-field">
+            <span>标签</span>
+            <div class="control-wrap">
+              <input id="tagFilter" autocomplete="off" placeholder="全部标签">
+              <button class="field-clear" type="button" data-clear="tagFilter" title="清除" aria-label="清除标签">×</button>
+            </div>
+            <div id="tagSuggestions" class="suggestions" role="listbox"></div>
+          </label>
+          <label class="field suggest-field">
+            <span>屏蔽标签</span>
+            <div class="control-wrap">
+              <input id="excludeTagFilter" autocomplete="off" placeholder="不屏蔽标签">
+              <button class="field-clear" type="button" data-clear="excludeTagFilter" title="清除" aria-label="清除屏蔽标签">×</button>
+            </div>
+            <div id="excludeTagSuggestions" class="suggestions" role="listbox"></div>
+          </label>
+          <label class="field suggest-field">
+            <span>作者</span>
+            <div class="control-wrap">
+              <input id="authorFilter" autocomplete="off" placeholder="全部作者">
+              <button class="field-clear" type="button" data-clear="authorFilter" title="清除" aria-label="清除作者">×</button>
+            </div>
+            <div id="authorSuggestions" class="suggestions" role="listbox"></div>
+          </label>
+          <label class="field suggest-field">
+            <span>类型</span>
+            <div class="control-wrap">
+              <input id="kindFilter" autocomplete="off" placeholder="全部类型">
+              <button class="field-clear" type="button" data-clear="kindFilter" title="清除" aria-label="清除类型">×</button>
+            </div>
+            <div id="kindSuggestions" class="suggestions" role="listbox"></div>
+          </label>
+          <label class="field menu-field">
+            <span>[0]资料</span>
+            <div class="control-wrap menu-wrap">
+              <input id="zeroDataFilter" type="hidden" value="normal">
+              <button id="zeroDataButton" class="menu-button" type="button" aria-haspopup="listbox" aria-expanded="false">正常查询</button>
+              <button class="field-clear" type="button" data-clear="zeroDataFilter" data-default="normal" data-focus="zeroDataButton" title="恢复默认" aria-label="恢复[0]资料筛选">×</button>
+              <div id="zeroDataMenu" class="suggestions menu-options" role="listbox">
+                <button class="suggestion-item" type="button" data-value="normal">正常查询</button>
+                <button class="suggestion-item" type="button" data-value="only">只看[0]资料</button>
+                <button class="suggestion-item" type="button" data-value="exclude">屏蔽[0]资料</button>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="quick-head">
+          <span>高频标签</span>
+          <button id="clearBtn" class="ghost-icon" type="button" title="清空筛选" aria-label="清空筛选">×</button>
+        </div>
+        <div class="chips" id="topTags" aria-label="高频标签"></div>
+      </aside>
+
+      <section class="main-panel" aria-label="检索结果">
+        <div class="topbar">
+          <div>
+            <div id="resultCount" class="result-count">等待仓库文件树</div>
+            <div id="sourceStatus" class="source-status">GitHub Trees API</div>
+          </div>
+          <label class="sort-field menu-field">
+            <span>排序</span>
+            <div class="control-wrap menu-wrap">
+              <input id="sortSelect" type="hidden" value="score">
+              <button id="sortButton" class="menu-button" type="button" aria-haspopup="listbox" aria-expanded="false">相关度</button>
+              <div id="sortMenu" class="suggestions menu-options" role="listbox">
+                <button class="suggestion-item" type="button" data-value="score">相关度</button>
+                <button class="suggestion-item" type="button" data-value="title">标题</button>
+                <button class="suggestion-item" type="button" data-value="author">作者</button>
+                <button class="suggestion-item" type="button" data-value="size">大小</button>
+                <button class="suggestion-item" type="button" data-value="path">路径</button>
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div id="results" class="results">
+          <div class="loading-card">正在读取 GitHub 仓库目录...</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="ignore-paths.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
