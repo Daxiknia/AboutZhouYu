@@ -7,7 +7,8 @@
 
   const CODE_PREFIX = "[0]code/";
   const DEFAULT_IGNORE_PATHS = ["[0]资料/0推荐书目"];
-  const SKIP_FILES = new Set([".gitignore", ".nojekyll", "index.html"]);
+  const SPECIAL_GROUP_DIRS = ["[html格式]36周瑜相关", "[原文包遗留]需要密码", "需要密码"];
+  const SKIP_FILES = new Set([".gitignore", ".nojekyll", "index.html", "readme.md", "readme.txt"]);
   const IMAGE_EXTENSIONS = new Set(["jpg", "jpeg", "png"]);
   const EXTENSIONS = new Set([
     "txt", "md", "html", "htm", "mht", "mhtml", "doc", "docx", "pdf", "epub",
@@ -29,6 +30,10 @@
     topTags: document.getElementById("topTags"),
     results: document.getElementById("results"),
     count: document.getElementById("resultCount"),
+    selectionCount: document.getElementById("selectionCount"),
+    selectResults: document.getElementById("selectResultsBtn"),
+    clearSelection: document.getElementById("clearSelectionBtn"),
+    downloadSelected: document.getElementById("downloadSelectedBtn"),
     status: document.getElementById("sourceStatus"),
     sort: document.getElementById("sortSelect"),
     sortButton: document.getElementById("sortButton"),
@@ -40,6 +45,8 @@
 
   const state = { query: "", tag: "", excludeTag: "", author: "", kind: "", zeroData: "normal", sort: "score" };
   const data = { files: [], tags: [], authors: [], kinds: [], ignorePaths: DEFAULT_IGNORE_PATHS };
+  const selected = new Set();
+  let currentRows = [];
   const fmt = new Intl.NumberFormat("zh-CN");
 
   function normalize(value) {
@@ -62,6 +69,10 @@
       return `/${repoFromPath}/${encodePath(path)}`;
     }
     return `../../${encodePath(path)}`;
+  }
+
+  function rawHref(path) {
+    return `https://raw.githubusercontent.com/${REPO.owner}/${REPO.name}/${REPO.branch}/${encodePath(path)}`;
   }
 
   function fileName(path) {
@@ -94,6 +105,10 @@
 
   function isZeroDataPath(path) {
     return path === "[0]资料" || path.startsWith("[0]资料/");
+  }
+
+  function specialGroupRoot(path) {
+    return SPECIAL_GROUP_DIRS.find((root) => path === root || path.startsWith(`${root}/`)) || "";
   }
 
   function titleFromPath(path) {
@@ -192,6 +207,22 @@
     return item.ext || item.kind || "file";
   }
 
+  function itemKey(item) {
+    return item.path;
+  }
+
+  function itemDownloadEntries(item) {
+    if (item.children && item.children.length) {
+      return item.children.map((entry) => ({
+        href: pagesHref(entry.path),
+        rawHref: rawHref(entry.path),
+        name: fileName(entry.path),
+        path: entry.path,
+      }));
+    }
+    return [{ href: item.href, rawHref: rawHref(item.path), name: item.name, path: item.path }];
+  }
+
   function fileSize(bytes) {
     if (!Number.isFinite(bytes)) return "未知大小";
     if (bytes < 1024) return `${bytes} B`;
@@ -238,15 +269,15 @@
     };
   }
 
-  function itemFromGroup(entries) {
+  function itemFromGroup(entries, groupRoot) {
     const first = entries[0];
-    const directory = dirName(first.path);
+    const directory = groupRoot || dirName(first.path);
     const leaf = fileName(directory);
     const tags = tagsFromName(leaf).concat(entries.flatMap((entry) => tagsFromName(fileName(entry.path))))
       .filter((tag, index, list) => tag && list.indexOf(tag) === index);
     const author = authorFromPath(`${directory}/${leaf}`);
     return {
-      title: titleFromPath(`${directory}/${leaf}`),
+      title: leaf,
       name: leaf,
       path: `${directory}/（${entries.length} 个文件）`,
       href: pagesHref(first.path),
@@ -266,11 +297,18 @@
       .filter((entry) => entry.type === "blob")
       .filter((entry) => !entry.path.startsWith(CODE_PREFIX))
       .filter((entry) => !isIgnored(entry.path))
-      .filter((entry) => !SKIP_FILES.has(fileName(entry.path)))
+      .filter((entry) => !SKIP_FILES.has(fileName(entry.path).toLowerCase()))
       .filter((entry) => EXTENSIONS.has(extension(entry.path)));
 
+    const specialGroups = new Map();
     const byDirAndKey = new Map();
     entries.forEach((entry) => {
+      const specialRoot = specialGroupRoot(entry.path);
+      if (specialRoot) {
+        if (!specialGroups.has(specialRoot)) specialGroups.set(specialRoot, []);
+        specialGroups.get(specialRoot).push(entry);
+        return;
+      }
       const groupKey = groupKeyFromEntry(entry);
       const key = `${dirName(entry.path)}\n${groupKey}`;
       if (!byDirAndKey.has(key)) byDirAndKey.set(key, { groupKey, entries: [] });
@@ -278,6 +316,7 @@
     });
 
     const files = [];
+    specialGroups.forEach((group, root) => files.push(itemFromGroup(group, root)));
     byDirAndKey.forEach(({ groupKey, entries: group }) => {
       if (shouldGroupEntries(group, groupKey)) {
         files.push(itemFromGroup(group));
@@ -373,31 +412,224 @@
     }).join("");
   }
 
+  function renderChildList(item) {
+    if (!item.children || !item.children.length) return "";
+    const rows = item.children.map((entry) => `
+      <li>
+        <a href="${pagesHref(entry.path)}" target="_blank" rel="noreferrer">${escapeHtml(fileName(entry.path))}</a>
+        <span>${fileSize(entry.size || 0)}</span>
+      </li>
+    `).join("");
+    return `
+      <details class="child-list">
+        <summary>查看 ${fmt.format(item.children.length)} 个文件</summary>
+        <ul>${rows}</ul>
+      </details>
+    `;
+  }
+
+  function renderTagRail(tags) {
+    if (!tags.length) return "";
+    const visible = tags.slice(0, 6);
+    const hidden = tags.slice(6);
+    const hiddenTitle = hidden.join(" / ");
+    const chips = visible.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+    const more = hidden.length
+      ? `<span class="tag tag-more" title="${escapeHtml(hiddenTitle)}">+${hidden.length}</span>`
+      : "";
+    return `<aside class="tag-rail" aria-label="标签"><div class="tag-list">${chips}${more}</div></aside>`;
+  }
+
   function render() {
     const rows = filtered();
+    currentRows = rows.map(({ item }) => item);
     els.count.textContent = `${fmt.format(rows.length)} / ${fmt.format(data.files.length)} 个条目`;
+    updateSelectionState();
     if (!rows.length) {
       els.results.innerHTML = `<div class="empty-card">没有匹配结果</div>`;
-      renderTopTags();
-      return;
-    }
+    renderTopTags();
+    return;
+  }
     els.results.innerHTML = rows.map(({ item }) => {
-      const tags = item.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join("");
+      const tagRail = renderTagRail(item.tags);
+      const hasTags = Boolean(item.tags.length);
       const author = item.author ? `<span>作者：${escapeHtml(item.author)}</span>` : "<span>作者未识别</span>";
       const fileType = compactKind(item);
       const count = item.fileCount > 1 ? `<span>${fmt.format(item.fileCount)} 个文件</span>` : "";
+      const titleNode = item.children && item.children.length
+        ? `<span class="result-title group-title" title="${escapeHtml(item.path)}">${highlight(item.title)}</span>`
+        : `<a class="result-title" href="${item.href}" target="_blank" rel="noreferrer" title="${escapeHtml(item.path)}">${highlight(item.title)}</a>`;
       return `
-        <article class="result-card">
+        <article class="result-card${selected.has(itemKey(item)) ? " selected" : ""}${hasTags ? " has-tags" : ""}">
           <div class="kind-mark">${escapeHtml(fileType)}</div>
           <div class="result-main">
-            <a class="result-title" href="${item.href}" target="_blank" rel="noreferrer" title="${escapeHtml(item.path)}">${highlight(item.title)}</a>
+            <label class="select-line">
+              <input class="result-select" type="checkbox" data-key="${escapeHtml(itemKey(item))}" ${selected.has(itemKey(item)) ? "checked" : ""}>
+              <span>选择</span>
+            </label>
+            ${titleNode}
             <div class="meta">${author}<span>${fileSize(item.size)}</span>${count}</div>
-            ${tags ? `<div class="tag-list">${tags}</div>` : ""}
+            ${renderChildList(item)}
           </div>
+          ${tagRail}
         </article>
       `;
     }).join("");
     renderTopTags();
+  }
+
+  function selectedItems() {
+    const all = new Map(data.files.map((item) => [itemKey(item), item]));
+    return Array.from(selected).map((key) => all.get(key)).filter(Boolean);
+  }
+
+  function selectedDownloadEntries() {
+    const seen = new Set();
+    const entries = [];
+    selectedItems().forEach((item) => {
+      itemDownloadEntries(item).forEach((entry) => {
+        if (seen.has(entry.path)) return;
+        seen.add(entry.path);
+        entries.push(entry);
+      });
+    });
+    return entries;
+  }
+
+  const crcTable = (() => {
+    const table = new Uint32Array(256);
+    for (let i = 0; i < 256; i += 1) {
+      let c = i;
+      for (let k = 0; k < 8; k += 1) {
+        c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+      }
+      table[i] = c >>> 0;
+    }
+    return table;
+  })();
+
+  function crc32(bytes) {
+    let crc = 0xffffffff;
+    for (let i = 0; i < bytes.length; i += 1) {
+      crc = crcTable[(crc ^ bytes[i]) & 0xff] ^ (crc >>> 8);
+    }
+    return (crc ^ 0xffffffff) >>> 0;
+  }
+
+  function dosTime(date) {
+    return (date.getHours() << 11) | (date.getMinutes() << 5) | Math.floor(date.getSeconds() / 2);
+  }
+
+  function dosDate(date) {
+    return ((date.getFullYear() - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate();
+  }
+
+  function write16(view, offset, value) {
+    view.setUint16(offset, value, true);
+  }
+
+  function write32(view, offset, value) {
+    view.setUint32(offset, value >>> 0, true);
+  }
+
+  function zipHeader(size) {
+    return new Uint8Array(size);
+  }
+
+  async function createZip(entries) {
+    const encoder = new TextEncoder();
+    const now = new Date();
+    const parts = [];
+    const central = [];
+    let offset = 0;
+
+    for (const entry of entries) {
+      const response = await fetch(entry.rawHref, { mode: "cors" });
+      if (!response.ok) throw new Error(`下载失败：${entry.path}`);
+      const dataBytes = new Uint8Array(await response.arrayBuffer());
+      const nameBytes = encoder.encode(entry.path.replace(/^\/+/, ""));
+      const crc = crc32(dataBytes);
+      const time = dosTime(now);
+      const date = dosDate(now);
+
+      const local = zipHeader(30 + nameBytes.length);
+      const localView = new DataView(local.buffer);
+      write32(localView, 0, 0x04034b50);
+      write16(localView, 4, 20);
+      write16(localView, 6, 0x0800);
+      write16(localView, 8, 0);
+      write16(localView, 10, time);
+      write16(localView, 12, date);
+      write32(localView, 14, crc);
+      write32(localView, 18, dataBytes.length);
+      write32(localView, 22, dataBytes.length);
+      write16(localView, 26, nameBytes.length);
+      local.set(nameBytes, 30);
+
+      const centralHeader = zipHeader(46 + nameBytes.length);
+      const centralView = new DataView(centralHeader.buffer);
+      write32(centralView, 0, 0x02014b50);
+      write16(centralView, 4, 20);
+      write16(centralView, 6, 20);
+      write16(centralView, 8, 0x0800);
+      write16(centralView, 10, 0);
+      write16(centralView, 12, time);
+      write16(centralView, 14, date);
+      write32(centralView, 16, crc);
+      write32(centralView, 20, dataBytes.length);
+      write32(centralView, 24, dataBytes.length);
+      write16(centralView, 28, nameBytes.length);
+      write32(centralView, 42, offset);
+      centralHeader.set(nameBytes, 46);
+
+      parts.push(local, dataBytes);
+      central.push(centralHeader);
+      offset += local.length + dataBytes.length;
+    }
+
+    const centralSize = central.reduce((sum, part) => sum + part.length, 0);
+    const end = zipHeader(22);
+    const endView = new DataView(end.buffer);
+    write32(endView, 0, 0x06054b50);
+    write16(endView, 8, entries.length);
+    write16(endView, 10, entries.length);
+    write32(endView, 12, centralSize);
+    write32(endView, 16, offset);
+
+    return new Blob([...parts, ...central, end], { type: "application/zip" });
+  }
+
+  function updateSelectionState() {
+    const itemCount = selectedItems().length;
+    const fileCount = selectedDownloadEntries().length;
+    els.selectionCount.textContent = itemCount
+      ? `已选 ${fmt.format(itemCount)} 条 / ${fmt.format(fileCount)} 个文件`
+      : "未选择条目";
+    els.downloadSelected.disabled = !fileCount;
+    els.clearSelection.disabled = !itemCount;
+  }
+
+  async function downloadEntries(entries) {
+    if (!entries.length) return;
+    const originalText = els.downloadSelected.textContent;
+    els.downloadSelected.disabled = true;
+    els.downloadSelected.textContent = "正在打包...";
+    try {
+      const blob = await createZip(entries);
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `AboutZhouYu-${new Date().toISOString().slice(0, 10)}.zip`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      window.alert(error.message || "批量下载失败");
+    } finally {
+      els.downloadSelected.textContent = originalText;
+      updateSelectionState();
+    }
   }
 
   function syncFromControls() {
@@ -492,6 +724,28 @@
         const focusTarget = button.dataset.focus ? document.getElementById(button.dataset.focus) : target;
         if (focusTarget) focusTarget.focus();
       });
+    });
+    els.results.addEventListener("change", (event) => {
+      const checkbox = event.target.closest(".result-select");
+      if (!checkbox) return;
+      if (checkbox.checked) {
+        selected.add(checkbox.dataset.key);
+      } else {
+        selected.delete(checkbox.dataset.key);
+      }
+      checkbox.closest(".result-card").classList.toggle("selected", checkbox.checked);
+      updateSelectionState();
+    });
+    els.selectResults.addEventListener("click", () => {
+      currentRows.forEach((item) => selected.add(itemKey(item)));
+      render();
+    });
+    els.clearSelection.addEventListener("click", () => {
+      selected.clear();
+      render();
+    });
+    els.downloadSelected.addEventListener("click", () => {
+      downloadEntries(selectedDownloadEntries());
     });
     els.clear.addEventListener("click", () => {
       els.query.value = "";

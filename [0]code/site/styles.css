@@ -2,12 +2,14 @@
   color-scheme: light;
   --paper: #fbfaf7;
   --paper-strong: #fffefa;
-  --ink: #221f1a;
+  --ink: #2b2620;
+  --panel-ink: #3a342d;
   --muted: #756f63;
+  --panel-muted: #847b6e;
   --line: #e3dbcf;
-  --jade: #1f716f;
-  --jade-soft: #dcefeb;
   --cinnabar: #a23d42;
+  --cinnabar-soft: #f1dddd;
+  --cinnabar-faint: rgba(162, 61, 66, 0.10);
   --gold: #bd8a35;
   --shadow: 0 20px 60px rgba(45, 37, 24, 0.13);
 }
@@ -21,7 +23,7 @@ body {
   background:
     radial-gradient(circle at 14% 8%, rgba(189, 138, 53, 0.10), transparent 28%),
     linear-gradient(135deg, #f8f3ea 0%, #f4f6f0 48%, #fbf7ef 100%);
-  font-family: "LXGW WenKai Screen", "霞鹜文楷 屏幕版", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
+  font-family: "Segoe UI", "Aptos", "LXGW WenKai Screen", "霞鹜文楷 屏幕版", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
   font-size: 14px;
 }
 
@@ -130,7 +132,7 @@ select,
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
   color: var(--ink);
-  font-family: "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-family: "Segoe UI", "Aptos", "LXGW WenKai Screen", "霞鹜文楷 屏幕版", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
 }
 
 input { padding: 0 13px; }
@@ -191,10 +193,10 @@ select {
 
 .field-clear::before {
   content: "×";
-  font-family: "Microsoft YaHei", system-ui, sans-serif;
-  font-size: 18px;
+  display: block;
+  font-family: "Segoe UI Symbol", "Arial", sans-serif;
+  font-size: 16px;
   line-height: 1;
-  transform: translateY(-1px);
 }
 
 .control-wrap:focus-within .field-clear,
@@ -213,9 +215,9 @@ select:focus,
 .menu-button:focus,
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--jade);
+  outline: 2px solid rgba(162, 61, 66, 0.72);
   outline-offset: 2px;
-  border-color: rgba(31, 113, 111, 0.45);
+  border-color: rgba(162, 61, 66, 0.42);
   background-color: var(--paper-strong);
 }
 
@@ -270,11 +272,12 @@ a:focus-visible {
   color: var(--ink);
   cursor: pointer;
   text-align: left;
+  font-family: inherit;
 }
 
 .suggestion-item:hover,
 .suggestion-item.active {
-  background: var(--jade-soft);
+  background: var(--cinnabar-soft);
 }
 
 .suggestion-item span {
@@ -307,10 +310,10 @@ a:focus-visible {
 
 .ghost-icon::before {
   content: "×";
-  font-family: "Microsoft YaHei", system-ui, sans-serif;
-  font-size: 18px;
+  display: block;
+  font-family: "Segoe UI Symbol", "Arial", sans-serif;
+  font-size: 16px;
   line-height: 1;
-  transform: translateY(-1px);
 }
 
 .ghost-icon:hover {
@@ -330,21 +333,19 @@ a:focus-visible {
   gap: 6px;
   align-items: center;
   min-height: 31px;
-  border: 1px solid rgba(31, 113, 111, 0.16);
+  border: 1px solid rgba(162, 61, 66, 0.14);
   border-radius: 8px;
   padding: 5px 9px;
-  background: var(--jade-soft);
-  color: #174f50;
+  background: var(--cinnabar-faint);
+  color: #743036;
   cursor: pointer;
   font-size: 13px;
 }
 
-.chip span {
-  color: rgba(23, 79, 80, 0.72);
-}
+.chip span { color: rgba(116, 48, 54, 0.72); }
 
 .chip.active {
-  background: var(--jade);
+  background: var(--cinnabar);
   color: #fff;
 }
 
@@ -353,12 +354,13 @@ a:focus-visible {
 .main-panel {
   min-width: 0;
   padding: 18px clamp(14px, 3vw, 34px) 30px;
+  color: var(--panel-ink);
 }
 
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -371,12 +373,13 @@ a:focus-visible {
 .result-count {
   font-size: 18px;
   font-weight: 700;
+  color: var(--panel-ink);
 }
 
 .source-status {
   display: none;
   margin-top: 5px;
-  color: var(--muted);
+  color: var(--panel-muted);
   font-size: 13px;
 }
 
@@ -390,6 +393,45 @@ a:focus-visible {
   gap: 7px;
 }
 
+.bulkbar {
+  position: sticky;
+  top: 58px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border: 1px solid rgba(96, 78, 49, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 254, 250, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 18px rgba(45, 37, 24, 0.06);
+  color: var(--panel-muted);
+  font-size: 12px;
+}
+
+.bulkbar button {
+  min-height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--panel-ink);
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.bulkbar button:hover:not(:disabled) {
+  border-color: rgba(162, 61, 66, 0.22);
+  background: var(--cinnabar-soft);
+}
+
+.bulkbar button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
 .result-card,
 .loading-card,
 .empty-card {
@@ -400,8 +442,13 @@ a:focus-visible {
 }
 
 .result-card:hover {
-  border-color: rgba(31, 113, 111, 0.24);
+  border-color: rgba(162, 61, 66, 0.18);
   background: rgba(255, 254, 250, 0.98);
+}
+
+.result-card.selected {
+  border-color: rgba(162, 61, 66, 0.26);
+  background: rgba(162, 61, 66, 0.055);
 }
 
 .result-card {
@@ -409,6 +456,10 @@ a:focus-visible {
   grid-template-columns: 42px minmax(0, 1fr);
   gap: 10px;
   padding: 8px 10px;
+}
+
+.result-card.has-tags {
+  grid-template-columns: 42px minmax(0, 1fr) minmax(92px, 170px);
 }
 
 .kind-mark {
@@ -427,14 +478,35 @@ a:focus-visible {
 
 .result-main { min-width: 0; }
 
+.select-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  vertical-align: 1px;
+}
+
+.result-select {
+  appearance: auto;
+  width: 14px;
+  height: 14px;
+  min-height: 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  accent-color: var(--cinnabar);
+}
+
 .result-title {
   display: inline;
-  color: var(--ink);
+  color: var(--panel-ink);
   text-decoration: none;
   font-size: 15px;
   font-weight: 700;
   line-height: 1.35;
-  font-family: "LXGW WenKai Screen", "霞鹜文楷 屏幕版", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
+  font-family: "Segoe UI", "Aptos", "LXGW WenKai Screen", "霞鹜文楷 屏幕版", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "SimSun", serif;
   overflow-wrap: anywhere;
 }
 
@@ -443,20 +515,33 @@ a:focus-visible {
   text-decoration: underline;
 }
 
+.group-title {
+  cursor: default;
+}
+
 .meta {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 14px;
   margin-top: 4px;
-  color: var(--muted);
+  color: var(--panel-muted);
   font-size: 12px;
+}
+
+.tag-rail {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-width: 0;
+  padding-top: 2px;
 }
 
 .tag-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 6px;
-  margin-top: 6px;
+  width: 100%;
 }
 
 .tag {
@@ -465,12 +550,64 @@ a:focus-visible {
   background: #f2eadc;
   color: #5e4526;
   font-size: 11px;
+  text-align: center;
+}
+
+.tag-more {
+  background: rgba(162, 61, 66, 0.10);
+  color: #743036;
+  cursor: help;
+}
+
+.child-list {
+  margin-top: 7px;
+  color: var(--panel-muted);
+  font-size: 12px;
+}
+
+.child-list summary {
+  width: fit-content;
+  cursor: pointer;
+  color: #743036;
+}
+
+.child-list ul {
+  display: grid;
+  gap: 4px;
+  max-height: 240px;
+  overflow: auto;
+  margin: 6px 0 0;
+  padding: 6px 8px;
+  border: 1px solid rgba(96, 78, 49, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 254, 250, 0.76);
+  list-style: none;
+}
+
+.child-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.child-list a {
+  overflow: hidden;
+  color: var(--panel-ink);
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.child-list a:hover {
+  color: var(--cinnabar);
+  text-decoration: underline;
 }
 
 .loading-card,
 .empty-card {
   padding: 34px;
-  color: var(--muted);
+  color: var(--panel-muted);
   text-align: center;
 }
 
@@ -493,11 +630,23 @@ mark {
     align-items: stretch;
     flex-direction: column;
   }
+  .bulkbar {
+    top: 92px;
+  }
   .sort-field { grid-template-columns: 1fr; }
   .result-card { grid-template-columns: 1fr; }
+  .result-card.has-tags { grid-template-columns: 1fr; }
   .kind-mark {
     width: fit-content;
     min-height: 28px;
     padding: 0 10px;
+  }
+  .tag-rail {
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+  .tag-list {
+    justify-content: flex-start;
+    margin-top: 2px;
   }
 }
