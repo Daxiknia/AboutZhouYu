@@ -10,6 +10,7 @@
   const SPECIAL_GROUP_DIRS = ["[html格式]36周瑜相关", "[原文包遗留]需要密码", "需要密码"];
   const SKIP_FILES = new Set([".gitignore", ".nojekyll", "index.html", "readme.md", "readme.txt"]);
   const IMAGE_EXTENSIONS = new Set(["jpg", "jpeg", "png"]);
+  const ZERO_DATA_OPTIONS = [{ name: "只看[0]资料" }, { name: "屏蔽[0]资料" }];
   const EXTENSIONS = new Set([
     "txt", "md", "html", "htm", "mht", "mhtml", "doc", "docx", "pdf", "epub",
     "jpg", "jpeg", "png", "azw3", "mobi", "caj", "kml", "rar"
@@ -27,6 +28,7 @@
     excludeTagSuggestions: document.getElementById("excludeTagSuggestions"),
     authorSuggestions: document.getElementById("authorSuggestions"),
     kindSuggestions: document.getElementById("kindSuggestions"),
+    zeroDataSuggestions: document.getElementById("zeroDataSuggestions"),
     topTags: document.getElementById("topTags"),
     results: document.getElementById("results"),
     count: document.getElementById("resultCount"),
@@ -38,12 +40,11 @@
     sort: document.getElementById("sortSelect"),
     sortButton: document.getElementById("sortButton"),
     sortMenu: document.getElementById("sortMenu"),
-    zeroDataButton: document.getElementById("zeroDataButton"),
-    zeroDataMenu: document.getElementById("zeroDataMenu"),
+    toggleTags: document.getElementById("toggleTagsBtn"),
     clear: document.getElementById("clearBtn"),
   };
 
-  const state = { query: "", tag: "", excludeTag: "", author: "", kind: "", zeroData: "normal", sort: "score" };
+  const state = { query: "", tag: "", excludeTag: "", author: "", kind: "", zeroData: "", sort: "score" };
   const data = { files: [], tags: [], authors: [], kinds: [], ignorePaths: DEFAULT_IGNORE_PATHS };
   const selected = new Set();
   let currentRows = [];
@@ -379,7 +380,8 @@
     if (!query) return escapeHtml(text);
     const chars = Array.from(new Set(Array.from(query).filter((ch) => ch.trim())));
     if (!chars.length) return escapeHtml(text);
-    const pattern = new RegExp(`(${chars.map((ch) => ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
+    const alternatives = chars.map((ch) => ch.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
+    const pattern = new RegExp(`((?:${alternatives})+)`, "gi");
     return escapeHtml(text).replace(pattern, "<mark>$1</mark>");
   }
 
@@ -447,25 +449,22 @@
     updateSelectionState();
     if (!rows.length) {
       els.results.innerHTML = `<div class="empty-card">没有匹配结果</div>`;
-    renderTopTags();
-    return;
-  }
+      renderTopTags();
+      return;
+    }
     els.results.innerHTML = rows.map(({ item }) => {
       const tagRail = renderTagRail(item.tags);
       const hasTags = Boolean(item.tags.length);
       const author = item.author ? `<span>作者：${escapeHtml(item.author)}</span>` : "<span>作者未识别</span>";
       const fileType = compactKind(item);
       const count = item.fileCount > 1 ? `<span>${fmt.format(item.fileCount)} 个文件</span>` : "";
-      const titleNode = item.children && item.children.length
-        ? `<span class="result-title group-title" title="${escapeHtml(item.path)}">${highlight(item.title)}</span>`
-        : `<a class="result-title" href="${item.href}" target="_blank" rel="noreferrer" title="${escapeHtml(item.path)}">${highlight(item.title)}</a>`;
+      const titleNode = `<span class="result-title${item.children && item.children.length ? " group-title" : ""}" title="${escapeHtml(item.path)}">${highlight(item.title)}</span>`;
       return `
-        <article class="result-card${selected.has(itemKey(item)) ? " selected" : ""}${hasTags ? " has-tags" : ""}">
+        <article class="result-card${selected.has(itemKey(item)) ? " selected" : ""}${hasTags ? " has-tags" : ""}" data-key="${escapeHtml(itemKey(item))}" tabindex="0" aria-label="下载 ${escapeHtml(item.title)}">
           <div class="kind-mark">${escapeHtml(fileType)}</div>
           <div class="result-main">
-            <label class="select-line">
-              <input class="result-select" type="checkbox" data-key="${escapeHtml(itemKey(item))}" ${selected.has(itemKey(item)) ? "checked" : ""}>
-              <span>选择</span>
+            <label class="select-line" title="选择此条目">
+              <input class="result-select" type="checkbox" aria-label="选择 ${escapeHtml(item.title)}" data-key="${escapeHtml(itemKey(item))}" ${selected.has(itemKey(item)) ? "checked" : ""}>
             </label>
             ${titleNode}
             <div class="meta">${author}<span>${fileSize(item.size)}</span>${count}</div>
@@ -609,6 +608,48 @@
     els.clearSelection.disabled = !itemCount;
   }
 
+  function safeFileName(value, fallback = "download") {
+    const cleaned = String(value || "")
+      .replace(/[<>:"/\\|?*\u0000-\u001f]/g, "_")
+      .replace(/[. ]+$/g, "")
+      .trim();
+    return cleaned.slice(0, 120) || fallback;
+  }
+
+  function saveBlob(blob, name) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = name;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  async function downloadItem(item, card) {
+    const entries = itemDownloadEntries(item);
+    if (!entries.length || card.classList.contains("downloading")) return;
+    card.classList.add("downloading");
+    card.setAttribute("aria-busy", "true");
+    try {
+      if (entries.length === 1) {
+        const entry = entries[0];
+        const response = await fetch(entry.rawHref, { mode: "cors" });
+        if (!response.ok) throw new Error(`下载失败：${entry.path}`);
+        saveBlob(await response.blob(), entry.name);
+      } else {
+        const blob = await createZip(entries);
+        saveBlob(blob, `${safeFileName(item.title, "AboutZhouYu")}.zip`);
+      }
+    } catch (error) {
+      window.alert(error.message || "下载失败");
+    } finally {
+      card.classList.remove("downloading");
+      card.removeAttribute("aria-busy");
+    }
+  }
+
   async function downloadEntries(entries) {
     if (!entries.length) return;
     const originalText = els.downloadSelected.textContent;
@@ -616,14 +657,7 @@
     els.downloadSelected.textContent = "正在打包...";
     try {
       const blob = await createZip(entries);
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `AboutZhouYu-${new Date().toISOString().slice(0, 10)}.zip`;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
+      saveBlob(blob, `AboutZhouYu-${new Date().toISOString().slice(0, 10)}.zip`);
     } catch (error) {
       window.alert(error.message || "批量下载失败");
     } finally {
@@ -638,7 +672,9 @@
     state.excludeTag = els.excludeTag.value;
     state.author = els.author.value;
     state.kind = els.kind.value;
-    state.zeroData = els.zeroData.value;
+    state.zeroData = els.zeroData.value === "只看[0]资料"
+      ? "only"
+      : els.zeroData.value === "屏蔽[0]资料" ? "exclude" : "";
     state.sort = els.sort.value;
     render();
   }
@@ -651,19 +687,17 @@
 
   function setMenuValue(input, button, menu, value) {
     input.value = value;
-    button.textContent = menuLabel(menu, value) || button.textContent;
+    button.textContent = menuLabel(menu, value) || button.dataset.placeholder || button.textContent;
+    button.classList.toggle("placeholder", !value && Boolean(button.dataset.placeholder));
+    button.closest(".menu-wrap").classList.toggle("has-selection", Boolean(value));
     menu.querySelectorAll("[data-value]").forEach((item) => {
       item.classList.toggle("active", item.dataset.value === value);
     });
   }
 
   function closeMenus() {
-    [els.sortMenu, els.zeroDataMenu].forEach((menu) => {
-      menu.classList.remove("open");
-    });
-    [els.sortButton, els.zeroDataButton].forEach((button) => {
-      button.setAttribute("aria-expanded", "false");
-    });
+    els.sortMenu.classList.remove("open");
+    els.sortButton.setAttribute("aria-expanded", "false");
   }
 
   function wireMenu(input, button, menu) {
@@ -693,6 +727,7 @@
       { input: els.excludeTag, panel: els.excludeTagSuggestions, list: () => data.tags },
       { input: els.author, panel: els.authorSuggestions, list: () => data.authors },
       { input: els.kind, panel: els.kindSuggestions, list: () => data.kinds },
+      { input: els.zeroData, panel: els.zeroDataSuggestions, list: () => ZERO_DATA_OPTIONS },
     ].forEach(({ input, panel, list }) => {
       input.addEventListener("input", () => renderSuggestions(input, panel, list()));
       input.addEventListener("focus", () => renderSuggestions(input, panel, list()));
@@ -705,10 +740,9 @@
         syncFromControls();
       });
     });
-    wireMenu(els.zeroData, els.zeroDataButton, els.zeroDataMenu);
     wireMenu(els.sort, els.sortButton, els.sortMenu);
     document.addEventListener("mousedown", (event) => {
-      [els.tagSuggestions, els.excludeTagSuggestions, els.authorSuggestions, els.kindSuggestions].forEach((panel) => {
+      [els.tagSuggestions, els.excludeTagSuggestions, els.authorSuggestions, els.kindSuggestions, els.zeroDataSuggestions].forEach((panel) => {
         if (!panel.parentElement.contains(event.target)) panel.classList.remove("open");
       });
       if (!event.target.closest(".menu-wrap")) closeMenus();
@@ -719,7 +753,6 @@
         if (!target) return;
         const value = button.dataset.default || "";
         target.value = value;
-        if (target === els.zeroData) setMenuValue(els.zeroData, els.zeroDataButton, els.zeroDataMenu, value);
         syncFromControls();
         const focusTarget = button.dataset.focus ? document.getElementById(button.dataset.focus) : target;
         if (focusTarget) focusTarget.focus();
@@ -736,6 +769,19 @@
       checkbox.closest(".result-card").classList.toggle("selected", checkbox.checked);
       updateSelectionState();
     });
+    els.results.addEventListener("click", (event) => {
+      const card = event.target.closest(".result-card");
+      if (!card || event.target.closest(".select-line, .child-list, input, button, a, summary")) return;
+      const item = data.files.find((candidate) => itemKey(candidate) === card.dataset.key);
+      if (item) downloadItem(item, card);
+    });
+    els.results.addEventListener("keydown", (event) => {
+      const card = event.target.closest(".result-card");
+      if (!card || event.target !== card || !["Enter", " "].includes(event.key)) return;
+      event.preventDefault();
+      const item = data.files.find((candidate) => itemKey(candidate) === card.dataset.key);
+      if (item) downloadItem(item, card);
+    });
     els.selectResults.addEventListener("click", () => {
       currentRows.forEach((item) => selected.add(itemKey(item)));
       render();
@@ -747,15 +793,20 @@
     els.downloadSelected.addEventListener("click", () => {
       downloadEntries(selectedDownloadEntries());
     });
+    els.toggleTags.addEventListener("click", () => {
+      const collapsed = els.topTags.classList.toggle("collapsed");
+      els.toggleTags.setAttribute("aria-expanded", String(!collapsed));
+      els.toggleTags.setAttribute("aria-label", collapsed ? "展开高频标签" : "折叠高频标签");
+      els.toggleTags.title = collapsed ? "展开高频标签" : "折叠高频标签";
+    });
     els.clear.addEventListener("click", () => {
       els.query.value = "";
       els.tag.value = "";
       els.excludeTag.value = "";
       els.author.value = "";
       els.kind.value = "";
-      els.zeroData.value = "normal";
+      els.zeroData.value = "";
       els.sort.value = "score";
-      setMenuValue(els.zeroData, els.zeroDataButton, els.zeroDataMenu, "normal");
       setMenuValue(els.sort, els.sortButton, els.sortMenu, "score");
       syncFromControls();
       els.query.focus();
